@@ -28,15 +28,15 @@
 
     <!-- Custom styles for this template-->
     <link href="${pageContext.request.contextPath}/css/adminGeneral.css" rel="stylesheet"/>
-    <link href="${pageContext.request.contextPath}/css/sb-admin-2.min.css" rel="stylesheet"/>
     <link href="${pageContext.request.contextPath}/css/dataTables.bootstrap4.min.css" rel="stylesheet"/>
+    <link href="${pageContext.request.contextPath}/css/adminGeneral.css" rel="stylesheet"/>
 
 </head>
 
 <body id="page-top">
 <div id="wrapper">
     <ul
-            class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+            class="navbar-nav sidebar accordion"
             id="accordionSidebar"
     >
         <a
@@ -83,37 +83,7 @@
                     aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar"
             >
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Các đối tượng:</h6>
-                    <a
-                            class="collapse-item"
-                            href="${pageContext.request.contextPath}/admin/table/users"
-                    >Người dùng</a
-                    >
-                    <a class="collapse-item"
-                       href="${pageContext.request.contextPath}/admin/table/belts">Sản
-                        phẩm</a>
-                    <a
-                            class="collapse-item"
-                            href="${pageContext.request.contextPath}/admin/table/reviews"
-                    >Đánh giá</a
-                    >
-                    <a
-                            class="collapse-item active"
-                            href="${pageContext.request.contextPath}/admin/table/coupons"
-                    >Coupon</a
-                    >
-                    <a
-                            class="collapse-item"
-                            href="${pageContext.request.contextPath}/admin/table/orders"
-                    >Đơn hàng</a
-                    >
-                    <a
-                            class="collapse-item"
-                            href="${pageContext.request.contextPath}/admin/table/collections"
-                    >Bộ sưu tập</a
-                    >
-                </div>
+                <jsp:include page="/frontend/sidebar/sidebar.jsp"/>
             </div>
         </li>
         <!-- Divider -->
@@ -131,7 +101,7 @@
                     class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow"
             >
                 <button
-                        class="btn btn-white border border-dark"
+                        class="btn btn-white border border-dark custom_btn_style"
                         style="color: black"
                         data-bs-toggle="modal"
                         data-bs-target="#createModal"
@@ -491,7 +461,7 @@
                 <div class="modal-footer">
                     <button
                             type="button"
-                            class="btn btn-white border border-dark"
+                            class="btn btn-white border border-dark custom_btn_style"
                             data-bs-dismiss="modal"
                             style="color: black"
                     >
@@ -501,7 +471,7 @@
                         <button
                                 id="removeUserBtn"
                                 type="submit"
-                                class="btn btn-dark"
+                                class="btn btn-dark custom_btn_style"
                                 style="color: white; background-color: black"
                         >
                             Xóa
@@ -537,7 +507,8 @@
                                 class="btn-close"
                                 data-bs-dismiss="modal"
                                 aria-label="Close"
-                        ></button>
+                        >&times;
+                        </button>
                     </div>
                     <div class="modal-body">
                         <input class="messageCreateOrUpdate" type="hidden" name="message" value="create">
@@ -548,25 +519,25 @@
                                     style="color: black"
                             >Mã coupon</label
                             >
-                            <input class="form-control" name="couponCode" type="text" required/>
+                            <input class="form-control inputField" name="couponCode" type="text" required/>
                         </div>
                         <div class="d-flex flex-column mt-3">
                             <label class="fomr-label" for="discountPercentage" style="color: black"
                             >% Giảm giá</label
                             >
-                            <input class="form-control" name="discountPercentage" type="number" required/>
+                            <input class="form-control inputField" name="discountPercentage" type="number" required/>
                         </div>
                         <div class="d-flex flex-column mt-3">
                             <label class="form-label" for="startDate" style="color: black"
                             >Nhập ngày bắt đầu</label
                             >
-                            <input class="form-control" name="startDate" type="date" required/>
+                            <input class="form-control inputField" name="startDate" type="date" required/>
                         </div>
                         <div class="d-flex flex-column mt-3">
                             <label class="form-label" for="endDate" style="color: black"
                             >Nhập ngày hết hạn</label
                             >
-                            <input class="form-control" name="endDate" type="date" required/>
+                            <input class="form-control inputField" name="endDate" type="date" required/>
                         </div>
                         <div class="d-flex flex mt-3">
                             <label class="form-label m-0 mr-2" style="color: black" for="isDeleted">
@@ -584,7 +555,7 @@
                     <div class="modal-footer">
                         <button
                                 type="button"
-                                class="btn btn-white border border-dark"
+                                class="btn btn-white border border-dark custom_btn_style"
                                 data-bs-dismiss="modal"
                                 style="color: black"
                         >
@@ -593,7 +564,7 @@
                         <form>
                             <button
                                     type="submit"
-                                    class="btn createOrUpdate"
+                                    class="btn createOrUpdate custom_btn_style"
                                     style="color: white; background-color: black"
                             >
                                 Tạo

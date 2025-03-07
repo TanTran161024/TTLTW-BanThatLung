@@ -27,8 +27,9 @@
     />
 
     <!-- Custom styles for this template-->
-    <link href="${pageContext.request.contextPath}/css/sb-admin-2.min.css" rel="stylesheet"/>
+    <link href="${pageContext.request.contextPath}/css/dataTables.bootstrap4.min.css" rel="stylesheet"/>
     <link href="${pageContext.request.contextPath}/css/adminGeneral.css" rel="stylesheet"/>
+
 </head>
 
 <body id="page-top">
@@ -36,9 +37,8 @@
 <div id="wrapper">
     <!-- Sidebar -->
     <ul
-            class="navbar-nav sidebar sidebar-dark accordion"
+            class="navbar-nav sidebar accordion"
             id="accordionSidebar"
-            style="background-color: black"
     >
         <!-- Sidebar - Brand -->
         <a
@@ -86,32 +86,8 @@
                     aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar"
             >
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item"
-                       href="${pageContext.request.contextPath}/admin/table/users"
-                    >Người dùng</a
-                    >
-                    <a class="collapse-item"
-                       href="${pageContext.request.contextPath}/admin/table/belts">Sản
-                        phẩm</a>
-                    <a class="collapse-item"
-                       href="${pageContext.request.contextPath}/admin/table/reviews"
-                    >Đánh giá</a
-                    >
-                    <a class="collapse-item"
-                       href="${pageContext.request.contextPath}/admin/table/coupons"
-                    >Coupon</a
-                    >
-                    <a class="collapse-item"
-                       href="${pageContext.request.contextPath}/admin/table/orders"
-                    >Đơn hàng</a
-                    >
-                    <a
-                            class="collapse-item"
-                            href="${pageContext.request.contextPath}/admin/table/collections"
-                    >Bộ sưu tập</a
-                    >
-                </div>
+                <jsp:include page="/frontend/sidebar/sidebar.jsp"/>
+
             </div>
         </li>
         <!-- Divider -->

@@ -10,7 +10,7 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
-@WebFilter(filterName = "SessionFilter", urlPatterns = "/*")
+@WebFilter(filterName = "SessionFilter", urlPatterns = "/*",dispatcherTypes = {DispatcherType.REQUEST})
 public class SessionFilter implements Filter {
 
     public void init(FilterConfig config) throws ServletException {

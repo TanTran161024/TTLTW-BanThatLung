@@ -28,16 +28,15 @@
 
     <!-- Custom styles for this template-->
     <link href="${pageContext.request.contextPath}/css/favorite.css" rel="stylesheet"/>
-    <link href="${pageContext.request.contextPath}/css/adminGeneral.css" rel="stylesheet"/>
-    <link href="${pageContext.request.contextPath}/css/sb-admin-2.min.css" rel="stylesheet"/>
     <link href="${pageContext.request.contextPath}/css/dataTables.bootstrap4.min.css" rel="stylesheet"/>
+    <link href="${pageContext.request.contextPath}/css/adminGeneral.css" rel="stylesheet"/>
 
 </head>
 
 <body id="page-top">
 <div id="wrapper">
     <ul
-            class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+            class="navbar-nav sidebar accordion"
             id="accordionSidebar"
     >
         <a
@@ -54,7 +53,7 @@
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item active">
-            <a class="nav-link" href="${pageContext.request.contextPath}/admin">
+            <a class="nav-link nav_link--black" href="${pageContext.request.contextPath}/admin">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span></a
             >
@@ -69,7 +68,7 @@
         <!-- Nav Item - Utilities Collapse Menu -->
         <li class="nav-item active">
             <a
-                    class="nav-link collapsed"
+                    class="nav-link collapsed nav_link--black"
                     href="#"
                     data-toggle="collapse"
                     data-target="#collapseUtilities"
@@ -85,32 +84,7 @@
                     aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar"
             >
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item active"
-                       href="${pageContext.request.contextPath}/admin/table/users"
-                    >Người dùng</a
-                    >
-                    <a class="collapse-item"
-                       href="${pageContext.request.contextPath}/admin/table/belts">Sản
-                        phẩm</a>
-                    <a class="collapse-item"
-                       href="${pageContext.request.contextPath}/admin/table/reviews"
-                    >Đánh giá</a
-                    >
-                    <a class="collapse-item"
-                       href="${pageContext.request.contextPath}/admin/table/coupons"
-                    >Coupon</a
-                    >
-                    <a class="collapse-item"
-                       href="${pageContext.request.contextPath}/admin/table/orders"
-                    >Đơn hàng</a
-                    >
-                    <a
-                            class="collapse-item"
-                            href="${pageContext.request.contextPath}/admin/table/collections"
-                    >Bộ sưu tập</a
-                    >
-                </div>
+                <jsp:include page="/frontend/sidebar/sidebar.jsp"/>
             </div>
         </li>
 
@@ -126,7 +100,7 @@
                     class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow"
             >
                 <button
-                        class="btn btn-white border border-dark"
+                        class="btn btn-white border border-dark custom_btn_style"
                         style="color: black"
                         data-bs-toggle="modal"
                         data-bs-target="#createModal"
@@ -392,10 +366,12 @@
                                         <td>${user.phoneNumber}</td>
                                         <td>${user.isDeleted == 0 ? "Chưa xóa":"Xóa mềm"}</td>
                                         <td class="text-center">
-                                            <button class="btn btn-dark fa-solid fa-pen-to-square"
-                                                    data-bs-toggle="modal" data-bs-target="#createModal"></button>
-                                            <button class="btn btn-danger fa-solid fa-trash-can" data-bs-toggle="modal"
-                                                    data-bs-target="#removeModal"></button>
+                                            <button class="btn fa-solid fa-pen-to-square custom_action_hover_edit"
+                                                    data-bs-toggle="modal" data-bs-target="#createModal"
+                                                    style="border-radius: 0px;"></button>
+                                            <button class="btn btn-dark fa-solid fa-trash-can custom_action_hover"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#removeModal" style="border-radius: 0px"></button>
                                         </td>
                                     </tr>
                                 </c:forEach>
@@ -423,47 +399,6 @@
 
     <div
             class="modal fade"
-            id="logoutModal"
-            tabindex="-1"
-            role="dialog"
-            aria-labelledby="exampleModalLabel"
-            aria-hidden="true"
-    >
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">
-                        Ready to Leave?
-                    </h5>
-                    <button
-                            class="close"
-                            type="button"
-                            data-dismiss="modal"
-                            aria-label="Close"
-                    >
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    Select "Logout" below if you are ready to end your current
-                    session.
-                </div>
-                <div class="modal-footer">
-                    <button
-                            class="btn btn-secondary"
-                            type="button"
-                            data-dismiss="modal"
-                    >
-                        Cancel
-                    </button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div
-            class="modal fade"
             id="removeModal"
             tabindex="-1"
             aria-labelledby="removeModal"
@@ -488,7 +423,7 @@
                 <div class="modal-footer">
                     <button
                             type="button"
-                            class="btn btn-white border border-dark"
+                            class="btn btn-white border border-dark custom_btn_style"
                             data-bs-dismiss="modal"
                             style="color: black"
                     >
@@ -498,7 +433,7 @@
                         <button
                                 id="removeUserBtn"
                                 type="submit"
-                                class="btn btn-dark"
+                                class="btn btn-dark custom_btn_style"
                                 style="color: white; background-color: black"
                         >
                             Xóa vĩnh viễn
@@ -534,7 +469,8 @@
                                 class="btn-close"
                                 data-bs-dismiss="modal"
                                 aria-label="Close"
-                        ></button>
+                        >&times;
+                        </button>
                     </div>
                     <div class="modal-body">
                         <input class="messageCreateOrUpdate" type="hidden" name="message" value="create">
@@ -543,7 +479,7 @@
                             >Tên người dùng</label
                             >
                             <input
-                                    class="form-control"
+                                    class="form-control inputField"
                                     name="userName"
                                     type="text"
                                     placeholder="Nhập tên người dùng"
@@ -555,7 +491,7 @@
                             >Email</label
                             >
                             <input
-                                    class="form-control"
+                                    class="form-control inputField"
                                     name="Email"
                                     type="text"
                                     placeholder="Nhập email"
@@ -568,7 +504,7 @@
                             >
                             <input
                                     id="password"
-                                    class="form-control"
+                                    class="form-control inputField"
                                     name="password"
                                     type="password"
                                     placeholder="Nhập mật khẩu cho người dùng"
@@ -584,7 +520,7 @@
                             >
                             <input
                                     id="reTypePassword"
-                                    class="form-control"
+                                    class="form-control inputField"
                                     name="reTypePassword"
                                     type="password"
                                     placeholder="Nhập lại mật khẩu cho người dùng"
@@ -625,7 +561,7 @@
                         <div class="d-flex flex-column mt-3">
                             <select
                                     style="color: black"
-                                    class="form-control"
+                                    class="form-control inputField"
                                     name="role"
                                     aria-label="Default select example"
                                     required
@@ -636,16 +572,16 @@
                             </select>
                         </div>
                         <div class="d-flex flex-column mt-3">
-                            <label class="form-label" for="birthDate" style="color: black"
+                            <label class="form-label " for="birthDate" style="color: black"
                             >Ngày sinh</label
                             >
-                            <input class="form-control" name="birthDate" type="date" required/>
+                            <input class="form-control inputField" name="birthDate" type="date" required/>
                         </div>
                         <div class="d-flex flex-column mt-3">
-                            <label class="form-label" for="phoneNumber" style="color: black"
+                            <label class="form-label " for="phoneNumber" style="color: black"
                             >Số điện thoại</label
                             >
-                            <input class="form-control" name="phoneNumber" type="number" required/>
+                            <input class="form-control inputField" name="phoneNumber" type="number" required/>
                         </div>
                         <div class="d-flex flex mt-3">
                             <label class="form-label m-0 mr-2" style="color: black" for="isDeleted">
@@ -663,7 +599,7 @@
                     <div class="modal-footer">
                         <button
                                 type="button"
-                                class="btn btn-white border border-dark hideModal"
+                                class="btn btn-white border border-dark hideModal custom_btn_style"
                                 data-bs-dismiss="modal"
                                 style="color: black"
                         >
@@ -671,7 +607,7 @@
                         </button>
                         <button
                                 type="submit"
-                                class="btn createOrUpdate"
+                                class="btn createOrUpdate custom_btn_style"
                                 style="color: white; background-color: black"
                         >
                             Tạo

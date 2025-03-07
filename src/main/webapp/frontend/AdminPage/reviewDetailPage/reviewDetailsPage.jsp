@@ -31,9 +31,9 @@
     <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/44.0.0/ckeditor5.css">
 
     <!-- Custom styles for this template-->
-    <link href="${pageContext.request.contextPath}/css/sb-admin-2.min.css" rel="stylesheet"/>
-    <link href="${pageContext.request.contextPath}/css/adminGeneral.css" rel="stylesheet"/>
     <script src="https://cdn.ckeditor.com/ckeditor5/44.0.0/ckeditor5.umd.js"></script>
+    <link href="${pageContext.request.contextPath}/css/dataTables.bootstrap4.min.css" rel="stylesheet"/>
+    <link href="${pageContext.request.contextPath}/css/adminGeneral.css" rel="stylesheet"/>
 
 
 </head>
@@ -41,7 +41,7 @@
 <body id="page-top">
 <div id="wrapper">
     <ul
-            class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+            class="navbar-nav sidebar accordion"
             id="accordionSidebar"
     >
         <a
@@ -67,59 +67,6 @@
         <!-- Divider -->
         <hr class="sidebar-divider"/>
 
-        <!-- Heading -->
-        <div class="sidebar-heading">Interface</div>
-
-        <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item">
-            <a
-                    class="nav-link collapsed"
-                    href="#"
-                    data-toggle="collapse"
-                    data-target="#collapseTwo"
-                    aria-expanded="true"
-                    aria-controls="collapseTwo"
-            >
-                <i class="fas fa-fw fa-list-check"></i>
-                <span>Quản lý</span>
-            </a>
-            <div
-                    id="collapseTwo"
-                    class="collapse"
-                    aria-labelledby="headingTwo"
-                    data-parent="#accordionSidebar"
-            >
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Các đối tượng:</h6>
-                    <a
-                            class="collapse-item"
-                            href="${pageContext.request.contextPath}/frontend/AdminPage/userManagement/userManagement.jsp"
-                    >Người dùng</a
-                    >
-                    <a
-                            class="collapse-item"
-                            href="${pageContext.request.contextPath}/frontend/AdminPage/productManagement/productManagement.jsp"
-                    >Sản phẩm</a
-                    >
-                    <a
-                            class="collapse-item"
-                            href="${pageContext.request.contextPath}/frontend/AdminPage/reviewManagement/reviewManagement.jsp"
-                    >Đánh giá</a
-                    >
-                    <a
-                            class="collapse-itema"
-                            href="${pageContext.request.contextPath}/frontend/AdminPage/couponManagement/couponManagement.jsp"
-                    >Coupon</a
-                    >
-                    <a
-                            class="collapse-item"
-                            href="${pageContext.request.contextPath}/frontend/AdminPage/orderManagement/orderManagement.jsp"
-                    >Đơn hàng</a
-                    >
-                </div>
-            </div>
-        </li>
-
         <!-- Nav Item - Utilities Collapse Menu -->
         <li class="nav-item active">
             <a
@@ -139,27 +86,7 @@
                     aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar"
             >
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item"
-                       href="${pageContext.request.contextPath}/admin/table/users"
-                    >Người dùng</a
-                    >
-                    <a class="collapse-item active"
-                       href="${pageContext.request.contextPath}/admin/table/belts">Sản
-                        phẩm</a>
-                    <a class="collapse-item"
-                       href="${pageContext.request.contextPath}/admin/table/reviews"
-                    >Đánh giá</a
-                    >
-                    <a class="collapse-item"
-                       href="${pageContext.request.contextPath}/admin/table/coupons"
-                    >Coupon</a
-                    >
-                    <a class="collapse-item"
-                       href="${pageContext.request.contextPath}/admin/table/orders"
-                    >Đơn hàng</a
-                    >
-                </div>
+                <jsp:include page="/frontend/sidebar/sidebar.jsp"/>
             </div>
         </li>
         <!-- Divider -->
@@ -203,7 +130,7 @@
                                         <input
                                                 name="beltName"
                                                 type="text"
-                                                class="col form-control form-control-lg custom_design custom__border"
+                                                class="col form-control form-control-lg custom_design custom__border inputField"
                                                 placeholder="Nhập tên sản phẩm"
                                                 value="${beltName}"
                                                 disabled
@@ -219,7 +146,7 @@
                                         <input
                                                 name="beltName"
                                                 type="text"
-                                                class="col form-control form-control-lg custom_design custom__border"
+                                                class="col form-control form-control-lg custom_design custom__border inputField"
                                                 value="${review.reviewerName}"
                                                 disabled
                                         />
@@ -245,7 +172,7 @@
                                         <input
                                                 name="ratingStar"
                                                 type="number"
-                                                class="col form-control form-control-lg custom_design custom__border"
+                                                class="col form-control form-control-lg custom_design custom__border inputField"
                                                 placeholder="Nhập tên sản phẩm"
                                                 value="${review.reviewerStar}"
                                                 disabled
@@ -260,7 +187,7 @@
                                             Ngày review
                                         </p>
                                         <input name="releaseDate" type="date"
-                                               class="col form-control form-control-lg custom_design custom__border"
+                                               class="col form-control form-control-lg custom_design custom__border inputField"
                                                value="${review.createdAt}"
                                                disabled
                                         />
@@ -288,47 +215,6 @@
 <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
 </a>
-
-<div
-        class="modal fade"
-        id="logoutModal"
-        tabindex="-1"
-        role="dialog"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
->
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">
-                    Ready to Leave?
-                </h5>
-                <button
-                        class="close"
-                        type="button"
-                        data-dismiss="modal"
-                        aria-label="Close"
-                >
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                Select "Logout" below if you are ready to end your current
-                session.
-            </div>
-            <div class="modal-footer">
-                <button
-                        class="btn btn-secondary"
-                        type="button"
-                        data-dismiss="modal"
-                >
-                    Cancel
-                </button>
-                <a class="btn btn-primary" href="login.html">Logout</a>
-            </div>
-        </div>
-    </div>
-</div>
 
 </div>
 

@@ -27,15 +27,15 @@
     />
 
     <!-- Custom styles for this template-->
-    <link href="${pageContext.request.contextPath}/css/adminGeneral.css" rel="stylesheet"/>
     <link href="${pageContext.request.contextPath}/css/sb-admin-2.min.css" rel="stylesheet"/>
-    <link href="${pageContext.request.contextPath}/css/dataTables.bootstrap4.min.css" rel="stylesheet"/>
+    <link href="${pageContext.request.contextPath}/css/adminGeneral.css" rel="stylesheet"/>
+
 </head>
 
 <body id="page-top">
 <div id="wrapper">
     <ul
-            class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+            class="navbar-nav sidebar accordion"
             id="accordionSidebar"
     >
         <a
@@ -83,32 +83,7 @@
                     aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar"
             >
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item"
-                       href="${pageContext.request.contextPath}/admin/table/users"
-                    >Người dùng</a
-                    >
-                    <a class="collapse-item"
-                       href="${pageContext.request.contextPath}/admin/table/belts">Sản
-                        phẩm</a>
-                    <a class="collapse-item active"
-                       href="${pageContext.request.contextPath}/admin/table/reviews"
-                    >Đánh giá</a
-                    >
-                    <a class="collapse-item"
-                       href="${pageContext.request.contextPath}/admin/table/coupons"
-                    >Coupon</a
-                    >
-                    <a class="collapse-item"
-                       href="${pageContext.request.contextPath}/admin/table/orders"
-                    >Đơn hàng</a
-                    >
-                    <a
-                            class="collapse-item"
-                            href="${pageContext.request.contextPath}/admin/table/collections"
-                    >Bộ sưu tập</a
-                    >
-                </div>
+                <jsp:include page="/frontend/sidebar/sidebar.jsp"/>
             </div>
         </li>
 
@@ -411,47 +386,6 @@
 
     <div
             class="modal fade"
-            id="logoutModal"
-            tabindex="-1"
-            role="dialog"
-            aria-labelledby="exampleModalLabel"
-            aria-hidden="true"
-    >
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">
-                        Ready to Leave?
-                    </h5>
-                    <button
-                            class="close"
-                            type="button"
-                            data-dismiss="modal"
-                            aria-label="Close"
-                    >
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    Select "Logout" below if you are ready to end your current
-                    session.
-                </div>
-                <div class="modal-footer">
-                    <button
-                            class="btn btn-secondary"
-                            type="button"
-                            data-dismiss="modal"
-                    >
-                        Cancel
-                    </button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div
-            class="modal fade"
             id="removeModal"
             tabindex="-1"
             aria-labelledby="removeModal"
@@ -468,7 +402,8 @@
                             class="btn-close"
                             data-bs-dismiss="modal"
                             aria-label="Close"
-                    ></button>
+                    >&times;
+                    </button>
                 </div>
                 <div class="modal-body removeModalBody">
 

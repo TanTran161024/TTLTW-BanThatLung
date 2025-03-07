@@ -27,8 +27,6 @@
     />
 
     <!-- Custom styles for this template-->
-    <link href="${pageContext.request.contextPath}/css/adminGeneral.css" rel="stylesheet"/>
-    <link href="${pageContext.request.contextPath}/css/sb-admin-2.min.css" rel="stylesheet"/>
     <link href="${pageContext.request.contextPath}/css/dataTables.bootstrap4.min.css" rel="stylesheet"/>
     <style>
         #suggestionList {
@@ -43,12 +41,14 @@
             background: #f0f0f0;
         }
     </style>
+    <link href="${pageContext.request.contextPath}/css/adminGeneral.css" rel="stylesheet"/>
+
 </head>
 
 <body id="page-top">
 <div id="wrapper">
     <ul
-            class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+            class="navbar-nav sidebar accordion"
             id="accordionSidebar"
     >
         <a
@@ -96,37 +96,7 @@
                     aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar"
             >
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Các đối tượng:</h6>
-                    <a
-                            class="collapse-item"
-                            href="${pageContext.request.contextPath}/admin/table/users"
-                    >Người dùng</a
-                    >
-                    <a class="collapse-item"
-                       href="${pageContext.request.contextPath}/admin/table/belts">Sản
-                        phẩm</a>
-                    <a
-                            class="collapse-item"
-                            href="${pageContext.request.contextPath}/admin/table/reviews"
-                    >Đánh giá</a
-                    >
-                    <a
-                            class="collapse-item"
-                            href="${pageContext.request.contextPath}/admin/table/coupons"
-                    >Coupon</a
-                    >
-                    <a
-                            class="collapse-item active"
-                            href="${pageContext.request.contextPath}/admin/table/orders"
-                    >Đơn hàng</a
-                    >
-                    <a
-                            class="collapse-item"
-                            href="${pageContext.request.contextPath}/admin/table/collections"
-                    >Bộ sưu tập</a
-                    >
-                </div>
+                <jsp:include page="/frontend/sidebar/sidebar.jsp"/>
             </div>
         </li>
 
@@ -145,7 +115,7 @@
                     class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow"
             >
                 <button
-                        class="btn btn-white border border-dark"
+                        class="btn btn-white border border-dark custom_btn_style"
                         style="color: black"
                         data-bs-toggle="modal"
                         data-bs-target="#createModal"
@@ -548,7 +518,8 @@
                                 class="btn-close"
                                 data-bs-dismiss="modal"
                                 aria-label="Close"
-                        ></button>
+                        >&times;
+                        </button>
                     </div>
                     <div class="modal-body">
                         <div class="container mt-2">
@@ -557,7 +528,7 @@
                                 <label for="userId" class="form-label">Id của người dùng</label>
                                 <input
                                         type="text"
-                                        class="form-control"
+                                        class="form-control inputField"
                                         id="userId"
                                         name="userId"
                                         required
@@ -571,7 +542,7 @@
                                 <label for="paymentMethodId" class="form-label"
                                 >Phương thức thanh toán</label
                                 >
-                                <select name="paymentMethod" class="form-control">
+                                <select name="paymentMethod" class="form-control custom_btn_style">
                                     <option value="GooglePay">Thanh toán với Google</option>
                                     <option value="Delivery">Thanh toán khi nhận hàng</option>
                                     <option value="Bank">Thanh toán bằng chuyển khoản</option>
@@ -584,7 +555,7 @@
                                 >
                                 <input
                                         type="date"
-                                        class="form-control"
+                                        class="form-control custom_btn_style"
                                         id="orderDate"
                                         name="orderDate"
                                 />
@@ -597,7 +568,7 @@
                                 <input
                                         type="text"
                                         step="0.01"
-                                        class="form-control"
+                                        class="form-control custom_btn_style"
                                         id="orderTotal"
                                         name="addressStreet"
                                         required
@@ -607,7 +578,7 @@
                                 <label for="orderTotal" class="form-label"
                                 >Thành phố / Tỉnh</label
                                 >
-                                <select name="addressCity" class="form-control form-select">
+                                <select name="addressCity" class="form-control form-select custom_btn_style">
                                     <option value="An Giang">An Giang</option>
                                     <option value="Bà Rịa - Vũng Tàu">
                                         Bà Rịa - Vũng Tàu
@@ -680,7 +651,7 @@
                                 <label for="orderStatus" class="form-label"
                                 >Tình trạng</label
                                 >
-                                <select name="orderState" class="form-control">
+                                <select name="orderState" class="form-control custom_btn_style">
                                     <option value="Đang xủ lý">Đang xủ lý</option>
                                     <option value="Thanh toán thành công">Thanh toán thành công</option>
                                     <option value="Delivering">Đang vận chuyển</option>
@@ -704,12 +675,12 @@
                     <div class="modal-footer">
                         <button
                                 type="submit"
-                                class="btn btn-secondary"
+                                class="btn btn-white custom_btn_style"
                                 data-bs-dismiss="modal"
                         >
                             Hủy
                         </button>
-                        <button type="submit" class="btn btn-primary">Tạo</button>
+                        <button type="submit" class="btn btn-dark custom_btn_style">Tạo</button>
                     </div>
                 </form>
             </div>

@@ -34,8 +34,8 @@
     <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/44.0.0/ckeditor5.css">
 
     <!-- Custom styles for this template-->
-    <link href="${pageContext.request.contextPath}/css/sb-admin-2.min.css" rel="stylesheet"/>
     <script src="https://cdn.ckeditor.com/ckeditor5/44.0.0/ckeditor5.umd.js"></script>
+    <link href="${pageContext.request.contextPath}/css/dataTables.bootstrap4.min.css" rel="stylesheet"/>
     <link href="${pageContext.request.contextPath}/css/adminGeneral.css" rel="stylesheet"/>
 
 
@@ -44,7 +44,7 @@
 <body id="page-top">
 <div id="wrapper">
     <ul
-            class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+            class="navbar-nav sidebar accordion"
             id="accordionSidebar"
     >
         <a
@@ -73,56 +73,6 @@
         <!-- Heading -->
         <div class="sidebar-heading">Interface</div>
 
-        <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item">
-            <a
-                    class="nav-link collapsed"
-                    href="#"
-                    data-toggle="collapse"
-                    data-target="#collapseTwo"
-                    aria-expanded="true"
-                    aria-controls="collapseTwo"
-            >
-                <i class="fas fa-fw fa-list-check"></i>
-                <span>Quản lý</span>
-            </a>
-            <div
-                    id="collapseTwo"
-                    class="collapse"
-                    aria-labelledby="headingTwo"
-                    data-parent="#accordionSidebar"
-            >
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Các đối tượng:</h6>
-                    <a
-                            class="collapse-item"
-                            href="${pageContext.request.contextPath}/frontend/AdminPage/userManagement/userManagement.jsp"
-                    >Người dùng</a
-                    >
-                    <a
-                            class="collapse-item"
-                            href="${pageContext.request.contextPath}/frontend/AdminPage/productManagement/productManagement.jsp"
-                    >Sản phẩm</a
-                    >
-                    <a
-                            class="collapse-item"
-                            href="${pageContext.request.contextPath}/frontend/AdminPage/reviewManagement/reviewManagement.jsp"
-                    >Đánh giá</a
-                    >
-                    <a
-                            class="collapse-itema"
-                            href="${pageContext.request.contextPath}/frontend/AdminPage/couponManagement/couponManagement.jsp"
-                    >Coupon</a
-                    >
-                    <a
-                            class="collapse-item"
-                            href="${pageContext.request.contextPath}/frontend/AdminPage/orderManagement/orderManagement.jsp"
-                    >Đơn hàng</a
-                    >
-                </div>
-            </div>
-        </li>
-
         <!-- Nav Item - Utilities Collapse Menu -->
         <li class="nav-item active">
             <a
@@ -142,32 +92,8 @@
                     aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar"
             >
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item"
-                       href="${pageContext.request.contextPath}/admin/table/users"
-                    >Người dùng</a
-                    >
-                    <a class="collapse-item active"
-                       href="${pageContext.request.contextPath}/admin/table/belts">Sản
-                        phẩm</a>
-                    <a class="collapse-item"
-                       href="${pageContext.request.contextPath}/admin/table/reviews"
-                    >Đánh giá</a
-                    >
-                    <a class="collapse-item"
-                       href="${pageContext.request.contextPath}/admin/table/coupons"
-                    >Coupon</a
-                    >
-                    <a class="collapse-item"
-                       href="${pageContext.request.contextPath}/admin/table/orders"
-                    >Đơn hàng</a
-                    >
-                    <a
-                            class="collapse-item"
-                            href="${pageContext.request.contextPath}/admin/table/collections"
-                    >Bộ sưu tập</a
-                    >
-                </div>
+                <jsp:include page="/frontend/sidebar/sidebar.jsp"/>
+
             </div>
         </li>
         <!-- Divider -->
@@ -231,7 +157,7 @@
     <c:when test='${param.message == "update"}'>update</c:when>
     <c:otherwise>create</c:otherwise>
 </c:choose>"/>
-                    <input type="hidden" name="productId"/>
+                    <input type="hidden" name="productId" class="inputField"/>
                     <div class="d-flex w-100">
                         <div class="col-12 bg-white">
                             <div class="d-flex flex-column mt-5">
@@ -262,7 +188,7 @@
                                         <input
                                                 name="coverImage"
                                                 type="file"
-                                                class="col p-0 form-control form-control-lg custom_design custom__border"
+                                                class="col p-0 form-control form-control-lg custom_design custom__border inputField"
                                         />
 
                                     </div>
@@ -278,7 +204,7 @@
                                                 <input
                                                         type="text"
                                                         disabled
-                                                        class="col p-0 form-control form-control-lg custom_design custom__border"
+                                                        class="col p-0 form-control form-control-lg custom_design custom__border inputField"
                                                         value="${image1}"
                                                 >
                                             </div>
@@ -295,7 +221,7 @@
                                         <input
                                                 name="coverImage"
                                                 type="file"
-                                                class="col p-0 form-control form-control-lg custom_design custom__border"
+                                                class="col p-0 form-control form-control-lg custom_design custom__border inputField"
                                         />
                                     </div>
                                     <c:choose>
@@ -310,7 +236,7 @@
                                                 <input
                                                         type="text"
                                                         disabled
-                                                        class="col p-0 form-control form-control-lg custom_design custom__border"
+                                                        class="col p-0 form-control form-control-lg custom_design custom__border inputField"
                                                         value="${image2}"
                                                 >
                                             </div>
@@ -325,7 +251,7 @@
                                         <input
                                                 name="coverImage"
                                                 type="file"
-                                                class="col p-0 form-control form-control-lg custom_design custom__border"
+                                                class="col p-0 form-control form-control-lg custom_design custom__border inputField"
                                         />
 
                                     </div>
@@ -341,7 +267,7 @@
                                                 <input
                                                         type="text"
                                                         disabled
-                                                        class="col p-0 form-control form-control-lg custom_design custom__border"
+                                                        class="col p-0 form-control form-control-lg custom_design custom__border inputField"
                                                         value="${image3}"
                                                 >
                                             </div>
@@ -356,7 +282,7 @@
                                         <input
                                                 name="coverImage"
                                                 type="file"
-                                                class="col p-0 form-control form-control-lg custom_design custom__border"
+                                                class="col p-0 form-control form-control-lg custom_design custom__border inputField"
                                         />
                                     </div>
                                     <c:choose>
@@ -371,7 +297,7 @@
                                                 <input
                                                         type="text"
                                                         disabled
-                                                        class="col p-0 form-control form-control-lg custom_design custom__border"
+                                                        class="col p-0 form-control form-control-lg custom_design custom__border inputField"
                                                         value="${image4}"
                                                 >
                                             </div>
@@ -386,7 +312,7 @@
                                         <input
                                                 name="coverImage"
                                                 type="file"
-                                                class="col p-0 form-control form-control-lg custom_design custom__border"
+                                                class="col p-0 form-control form-control-lg custom_design custom__border inputField"
                                         />
                                     </div>
                                     <c:choose>
@@ -401,7 +327,7 @@
                                                 <input
                                                         type="text"
                                                         disabled
-                                                        class="col p-0 form-control form-control-lg custom_design custom__border"
+                                                        class="col p-0 form-control form-control-lg custom_design custom__border inputField"
                                                         value="${image4}"
                                                 >
                                             </div>
@@ -416,7 +342,7 @@
                                         <input
                                                 name="beltName"
                                                 type="text"
-                                                class="col form-control form-control-lg custom_design custom__border"
+                                                class="col form-control form-control-lg custom_design custom__border inputField"
                                                 placeholder="Nhập tên sản phẩm"
                                                 value="${product.name}"
                                                 required
@@ -433,7 +359,7 @@
                                                 placeholder="các tag cách nhau bởi dấu cách"
                                                 name="tags"
                                                 type="text"
-                                                class="col form-control form-control-lg custom_design custom__border"
+                                                class="col form-control form-control-lg custom_design custom__border inputField"
                                                 value="${tags}"
                                                 required
                                         />
@@ -446,7 +372,7 @@
                                         </p>
                                         <select
                                                 style="color: black"
-                                                class="col form-control form-control-lg custom_design custom__border"
+                                                class="col form-control form-control-lg custom_design custom__border inputField"
                                                 name="material"
                                                 aria-label="Default select example"
                                         >
@@ -462,7 +388,7 @@
                                             Ngày ra mắt
                                         </p>
                                         <input name="releaseDate" type="date"
-                                               class="col form-control form-control-lg custom_design custom__border"
+                                               class="col form-control form-control-lg custom_design custom__border inputField"
                                                value="${product.releaseDate}"
                                                required
                                         />
@@ -477,7 +403,7 @@
                                                 id="price-input"
                                                 name="price"
                                                 type="text"
-                                                class="col form-control form-control-lg custom_design custom__border"
+                                                class="col form-control form-control-lg custom_design custom__border inputField"
                                                 placeholder="Nhập giá sản phẩm"
                                                 oninput="formatNumber(this)"
                                                 value="${product.price}"
@@ -493,7 +419,7 @@
                                         <input
                                                 name="quantity"
                                                 type="number"
-                                                class="col form-control form-control-lg custom_design custom__border"
+                                                class="col form-control form-control-lg custom_design custom__border inputField"
                                                 placeholder="Nhập số lượng khách hàng có thể chọn"
                                                 value="${product.stockQuantity}"
                                                 required
@@ -508,7 +434,7 @@
                                         <div class="col d-flex align-items-center">
                                             <div class="form-check me-4 d-flex align-items-center">
                                                 <input
-                                                        class=" me-3 mb-1"
+                                                        class=" me-3 mb-1 "
                                                         type="radio"
                                                         name="gender"
                                                         id="exampleRadios1"
@@ -558,7 +484,7 @@
                                         <input
                                                 type="number"
                                                 name="discountPercent"
-                                                class="col form-control form-control-lg custom_design custom__border"
+                                                class="col form-control form-control-lg custom_design custom__border inputField"
                                                 value="${product.discountPercent}"
                                         />
                                     </div>
@@ -572,7 +498,7 @@
                                     <%--                                        </div>--%>
                                     <%--                                    </div>--%>
                                     <div class="row d-flex justify-content-end mb-3 ps-sm-5">
-                                        <button type="submit" class="btn btn-dark "
+                                        <button type="submit" class="btn btn-dark custom_btn_style"
                                                 style="width: 30%; height: 47px">
                                             <c:choose>
                                                 <c:when test="${param.id != null}">
@@ -607,47 +533,6 @@
 <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
 </a>
-
-<div
-        class="modal fade"
-        id="logoutModal"
-        tabindex="-1"
-        role="dialog"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
->
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">
-                    Ready to Leave?
-                </h5>
-                <button
-                        class="close"
-                        type="button"
-                        data-dismiss="modal"
-                        aria-label="Close"
-                >
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                Select "Logout" below if you are ready to end your current
-                session.
-            </div>
-            <div class="modal-footer">
-                <button
-                        class="btn btn-secondary"
-                        type="button"
-                        data-dismiss="modal"
-                >
-                    Cancel
-                </button>
-                <a class="btn btn-primary" href="login.html">Logout</a>
-            </div>
-        </div>
-    </div>
-</div>
 
 </div>
 
