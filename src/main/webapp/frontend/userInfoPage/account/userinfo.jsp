@@ -45,51 +45,56 @@
         </ol>
     </nav>
 </div>
-<div class="container-lg mt-3">
-    <div
-            class="d-flex justify-content-between"
-            style="white-space: nowrap; margin-top: 150px"
-    >
+
+
+<div class="container my-3">
+    <div class="row">
+        <h2 class="mt-5 mb-3">Tài khoản của tôi</h2>
         <div
-                class="d-inline-block fw-bold custom_active mb-4"
-                style="padding: 12px"
+                class="d-flex col-12"
+                style="white-space: nowrap;"
         >
-            <a
-                    class="text-dark text-decoration-none custom_size--19"
-                    href="${pageContext.request.contextPath}/userInfo"
-            >Tài khoản</a
+            <div
+                    class="d-inline-block fw-bold custom_active mb-4"
+                    style="padding: 12px"
             >
-        </div>
-        <div class="d-inline-block fw-bold" style="padding: 12px">
-            <a
-                    class="text-dark text-decoration-none custom_size--19"
-                    href="${pageContext.request.contextPath}/userProfile"
-            >Hồ sơ</a
-            >
-        </div>
-        <div class="d-inline-block fw-bold" style="padding: 12px">
-            <a
-                    class="text-dark text-decoration-none custom_size--19"
-                    href="${pageContext.request.contextPath}/userAddress?userId=${sessionScope.auth.id}"
-            >Địa chỉ</a
-            >
-        </div>
-        <div class="d-inline-block fw-bold" style="padding: 12px">
-            <a
-                    class="text-dark text-decoration-none custom_size--19"
-                    href="${pageContext.request.contextPath}/userPrivacy"
-            >Riêng tư</a
-            >
-        </div>
-        <div class="d-inline-block fw-bold" style="padding: 12px">
-            <a
-                    class="text-dark text-decoration-none custom_size--19"
-                    href="${pageContext.request.contextPath}/viewOrders"
-            >Đơn hàng</a
-            >
+                <a
+                        class="text-white text-decoration-none custom_size--19"
+                        href="${pageContext.request.contextPath}/userInfo"
+                >Tài khoản</a
+                >
+            </div>
+            <div class="d-inline-block fw-bold" style="padding: 12px">
+                <a
+                        class="text-dark text-decoration-none custom_size--19"
+                        href="${pageContext.request.contextPath}/userProfile"
+                >Hồ sơ</a
+                >
+            </div>
+            <div class="d-inline-block fw-bold" style="padding: 12px">
+                <a
+                        class="text-dark text-decoration-none custom_size--19"
+                        href="${pageContext.request.contextPath}/userAddress?userId=${sessionScope.auth.id}"
+                >Địa chỉ</a
+                >
+            </div>
+            <div class="d-inline-block fw-bold" style="padding: 12px">
+                <a
+                        class="text-dark text-decoration-none custom_size--19"
+                        href="${pageContext.request.contextPath}/userPrivacy"
+                >Riêng tư</a
+                >
+            </div>
+            <div class="d-inline-block fw-bold" style="padding: 12px">
+                <a
+                        class="text-dark text-decoration-none custom_size--19"
+                        href="${pageContext.request.contextPath}/viewOrders"
+                >Đơn hàng</a
+                >
+            </div>
         </div>
     </div>
-    <div class="container container-sm border custom_rounded bg-white">
+    <div class="container container-sm border rounded">
         <div class="d-flex flex-column mt-4 mb-2 ms-2">
             <h3 class="font-weight-bold custom_size--19">Chào ${sessionScope.auth.firstName}</h3>
             <h5 class="custom_size--16">Họ tên</h5>
@@ -102,7 +107,7 @@
         <input type="hidden" name="message" value="updateEmail">
         <input type="hidden" name="userId" value="${sessionScope.auth.id}">
         <input id="newEmail" type="hidden" name="newEmail" value="">
-        <div class="container container-sm border custom_rounded mt-4">
+        <div class="container container-sm border rounded mt-4">
             <div class="d-flex flex-column mt-4 mb-2 ms-2 border-bottom ms-2">
                 <h3 class="font-weight-bold custom_size--19">Email</h3>
                 <h6 class="custom_size--16">Email hiện tại</h6>
@@ -147,7 +152,7 @@
         </div>
 
     </form>
-    <div class="container container-sm border custom_rounded mt-4 mb-5">
+    <div class="container container-sm border rounded my-3">
         <form id="updatePasswordForm" action="${pageContext.request.contextPath}/userInfo" method="POST">
             <input type="hidden" name="message" value="updatePassword"/>
             <input type="hidden" name="userId" value="${sessionScope.auth.id}"/>
