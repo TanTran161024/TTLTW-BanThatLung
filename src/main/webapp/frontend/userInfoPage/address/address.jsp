@@ -93,10 +93,10 @@
 
     </div>
 
+    <p class="address-title">Địa chỉ giao hàng của bạn</p>
     <div class="container container-sm border rounded col-12">
         <div class="d-flex flex-column">
-            <p class="address-title">Địa chỉ giao hàng của bạn</p>
-            <div class="userInfo--address--display">
+            <div class="userInfo--address--display mb-3">
                 <button
                         class="btn mt-4 border border-3 border-dark custom_add_address"
                         data-bs-toggle="modal"
@@ -218,24 +218,24 @@
                 <jsp:useBean id="userAddressList" scope="request" type="java.util.List"/>
                 <c:forEach var="address" items="${userAddressList}">
                     <div
-                            class="address__info_div d-flex flex-column me-5 custom_hover py-5 ps-2 pe-3 ${address.isUse == 1 ? "border-dark": ""}"
+                            class="address__info_div user-addresses d-flex flex-column me-5 custom_hover ps-2 pe-3 rounded-0 ${address.isUse == 1 ? "border-dark bg-light": ""}"
                     >
+                        <p class="custom_name_display">${address.userName}</p>
+                        <p class="custom_address_detail_display">${address.addressStreet}</p>
+                        <p class="custom_address">${address.addressCity}</p>
+                        <p class="custom_phoneNumber_display">${address.phoneNumber}</p>
                         <form class="defaultAddressForm" action="${pageContext.request.contextPath}/userAddress"
                               method="POST">
                             <input class="userAddressId" type="hidden" name="userAddressId" value="${address.id}">
                             <input class="userInfo" type="hidden" name="userId" value="${sessionScope.auth.id}">
                             <button
                                     type="submit"
-                                    class="d-flex justify-content-center btn border-3 border-dark rounded-pill text-dark px-0 mb-4 w-50 custom_default"
+                                    class="justify-content-center btn rounded border-dark text-dark ml-3 w-50 custom_default"
                             >
                                 <input type="hidden" name="message" value="setDefaultAddress"/>
                                 Mặc định
                             </button>
                         </form>
-                        <p class="custom_name_display">${address.userName}</p>
-                        <p class="custom_address_detail_display">${address.addressStreet}</p>
-                        <p class="custom_address">${address.addressCity}</p>
-                        <p class="custom_phoneNumber_display">${address.phoneNumber}</p>
                         <div class="address__info__action mt-4">
                             <button
                                     class="btn btn-light rounded-pill fw-bold custom_popup"
