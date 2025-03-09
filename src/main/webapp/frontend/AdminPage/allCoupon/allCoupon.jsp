@@ -13,29 +13,14 @@
     <meta name="author" content=""/>
 
     <title>THOMAS - Admin</title>
-    <link rel="icon" href="${pageContext.request.contextPath}/assets/icons/favicon.svg" type="image/x-icon"/>
+    <jsp:include page="/frontend/components/Admin/adminLink/adminLink.jsp"/>
 
-    <!-- Custom fonts for this template-->
-    <link
-            href="${pageContext.request.contextPath}/css/fontawesome-free-6.6.0-web/fontawesome-free-6.6.0-web/css/all.min.css"
-            rel="stylesheet"
-            type="text/css"
-    />
-    <link
-            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-            rel="stylesheet"
-    />
-
-    <!-- Custom styles for this template-->
-    <link href="${pageContext.request.contextPath}/css/adminGeneral.css" rel="stylesheet"/>
-    <link href="${pageContext.request.contextPath}/css/dataTables.bootstrap4.min.css" rel="stylesheet"/>
-    <link href="${pageContext.request.contextPath}/css/adminGeneral.css" rel="stylesheet"/>
 
 </head>
 
 <body id="page-top">
 <div id="wrapper">
-    <jsp:include page="/frontend/components/sidebar/sidebar.jsp"/>
+    <jsp:include page="/frontend/components/Admin/sidebar/sidebar.jsp"/>
 
     <div id="content-wrapper" class="d-flex flex-column">
         <div id="content">
@@ -322,7 +307,7 @@
                 </div>
             </div>
 
-            <jsp:include page="/frontend/components/adminFooter/adminFooter.jsp"/>
+            <jsp:include page="/frontend/components/Admin/adminFooter/adminFooter.jsp"/>
 
         </div>
     </div>
@@ -520,25 +505,7 @@
     </div>
     <!-- Bootstrap core JavaScript-->
 
-    <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-            crossorigin="anonymous"
-    ></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="${pageContext.request.contextPath}/js/jquery.easing.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="${pageContext.request.contextPath}/js/allCoupon.js"></script>
-    <script src="${pageContext.request.contextPath}/js/sb-admin-2.min.js"></script>
-
-    <script src="${pageContext.request.contextPath}/js/jquery.dataTables.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/dataTables.bootstrap4.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/datatable.js"></script>
+    <jsp:include page="/frontend/components/Admin/scripts/adminScripts/datatable.jsp"/>
 
     <script>
         const checkbox = document.getElementById('showActive');
