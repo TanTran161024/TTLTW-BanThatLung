@@ -7,13 +7,23 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @WebServlet(name = "couponAdminController", value = "/admin/table/coupons")
+@MultipartConfig(
+        fileSizeThreshold = 1024 * 1024 * 2,
+        maxFileSize = 1024 * 1024 * 10,
+        maxRequestSize = 1024 * 1024 * 50
+)
 public class couponAdminController extends HttpServlet {
     UploadCouponService uploadCouponService = new UploadCouponService();
 
@@ -55,8 +65,17 @@ public class couponAdminController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE;
         String message = request.getParameter("message");
+        if (message.equals("import")) {
+            Part filePart = request.getPart("file");
+            if (filePart != null) {
+                importCSV(filePart);
+                response.sendRedirect("/admin/table/coupons");
+                return;
+            }
+        }
         int couponId = 0;
         if (message.equals("delete")) {
             couponId = Integer.parseInt(request.getParameter("couponId"));
@@ -80,6 +99,33 @@ public class couponAdminController extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "/admin/table/coupons");
         }
 
+    }
+
+    private void importCSV(Part filePart) {
+        List<String[]> data = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(filePart.getInputStream()))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] values = line.split(",");
+                data.add(values);
+            }
+            if (data.size() > 0) {
+                saveToDatabase(data);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void saveToDatabase(List<String[]> data) {
+        data = data.subList(1, data.size() - 1)
+                .stream()
+                .map(arr -> Arrays.stream(arr)
+                        .map(s -> s.replaceAll("\"", ""))
+                        .toArray(String[]::new)).collect(Collectors.toList());
+        for (String[] row : data) {
+            uploadCouponService.createCoupon(LocalDate.parse(row[3]), LocalDate.parse(row[4]), row[1], Double.parseDouble(row[2]), row[5].equals("Có") ? 1 : 0);
+        }
     }
 }
 

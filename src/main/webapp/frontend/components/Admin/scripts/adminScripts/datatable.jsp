@@ -32,7 +32,18 @@
     new DataTable('#dataTable', {
         layout: {
             topStart: {
-                buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+                buttons: [
+                    'copy',
+                    {
+                        extend: 'csv',
+                        text: 'Export CSV',
+                        charset: 'utf-8',
+                        bom: true
+                    },
+                    'excel',
+                    'pdf',
+                    'print'
+                ]
             }
         }
     });

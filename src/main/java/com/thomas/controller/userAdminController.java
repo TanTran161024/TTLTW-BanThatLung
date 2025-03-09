@@ -7,13 +7,20 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @WebServlet(name = "userAdminController", value = "/admin/table/users")
+@MultipartConfig(
+        fileSizeThreshold = 1024 * 1024 * 2,
+        maxFileSize = 1024 * 1024 * 10,
+        maxRequestSize = 1024 * 1024 * 50
+)
 public class userAdminController extends HttpServlet {
     UploadUserService uploadUserService = new UploadUserService();
 
@@ -52,14 +59,24 @@ public class userAdminController extends HttpServlet {
         }
         List<User> userList = uploadUserService.getAllUsers();
         request.setAttribute("userList", userList);
-        System.out.println(request.getRequestURI().endsWith("users")?"1":"0");
+        System.out.println(request.getRequestURI().endsWith("users") ? "1" : "0");
         request.getRequestDispatcher("/frontend/AdminPage/allUser/allUser.jsp").forward(request, response);
     }
 
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         String message = request.getParameter("message");
+        if (message.equals("import")) {
+            Part filePart = request.getPart("file");
+            if (filePart != null) {
+                importCSV(filePart);
+                response.sendRedirect("/admin/table/users");
+                return;
+            }
+        }
+
         if (message.equals("delete")) {
             int userId = Integer.parseInt(request.getParameter("userId"));
             uploadUserService.deleteUser(userId);
@@ -92,5 +109,31 @@ public class userAdminController extends HttpServlet {
 
         response.sendRedirect("/admin/table/users");
     }
-}
 
+    private void importCSV(Part filePart) {
+        List<String[]> data = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(filePart.getInputStream()))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] values = line.split(",");
+                data.add(values);
+            }
+            if (data.size() > 0) {
+                saveToDatabase(data);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void saveToDatabase(List<String[]> data) {
+        data = data.subList(1, data.size() - 1)
+                .stream()
+                .map(arr -> Arrays.stream(arr)
+                        .map(s -> s.replaceAll("\"", ""))
+                        .toArray(String[]::new)).collect(Collectors.toList());
+        for (String[] row : data) {
+            uploadUserService.saveUser(row[1], row[2], row[3], row[4], Integer.parseInt(row[5]), LocalDate.parse(row[6]), Long.parseLong(row[7]), row[8].equals("Chưa xóa") ? 1 : 0);
+        }
+    }
+}

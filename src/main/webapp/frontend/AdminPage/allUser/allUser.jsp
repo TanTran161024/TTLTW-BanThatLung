@@ -247,6 +247,14 @@
                         </h6>
                     </div>
                     <div class="card-body">
+                        <div class="d-flex justify-content-end align-items-center">
+                            <h3 class="mr-5">Import CSV</h3>
+                            <form method="post" enctype="multipart/form-data"
+                                  action="${pageContext.request.contextPath}/admin/table/users?message=import">
+                                <input type="file" name="file">
+                                <button type="submit">Upload</button>
+                            </form>
+                        </div>
                         <div class="table-responsive">
                             <table
                                     class="display nowrap"
@@ -257,10 +265,11 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Tên</th>
-                                    <th>Ngày tạo</th>
-                                    <th>Giới tính</th>
                                     <th>Email</th>
+                                    <th>Mật khẩu</th>
+                                    <th>Giới tính</th>
                                     <th>Quyền</th>
+                                    <th>Ngày sinh</th>
                                     <th>Số điện thoại</th>
                                     <th>Trạng thái</th>
                                     <th>Hành động</th>
@@ -270,10 +279,11 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Tên</th>
-                                    <th>Ngày tạo</th>
-                                    <th>Giới tính</th>
                                     <th>Email</th>
+                                    <th>Mật khẩu</th>
+                                    <th>Giới tính</th>
                                     <th>Quyền</th>
+                                    <th>Ngày sinh</th>
                                     <th>Số điện thoại</th>
                                     <th>Trạng thái</th>
                                     <th>Hành động</th>
@@ -285,10 +295,11 @@
                                     <tr>
                                         <td class="userId">${user.id}</td>
                                         <td>${user.name}</td>
-                                        <td>${user.createAt}</td>
-                                        <td>${user.gender}</td>
                                         <td>${user.email}</td>
+                                        <td>${user.password}</td>
+                                        <td>${user.gender}</td>
                                         <td>${user.role}</td>
+                                        <td>${user.dateOfBirth}</td>
                                         <td>${user.phoneNumber}</td>
                                         <td>${user.isDeleted == 0 ? "Chưa xóa":"Xóa mềm"}</td>
                                         <td class="text-center">

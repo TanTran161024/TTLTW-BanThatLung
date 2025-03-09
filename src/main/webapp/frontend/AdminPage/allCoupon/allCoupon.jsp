@@ -15,7 +15,6 @@
     <title>THOMAS - Admin</title>
     <jsp:include page="/frontend/components/Admin/adminLink/adminLink.jsp"/>
 
-
 </head>
 
 <body id="page-top">
@@ -247,6 +246,14 @@
                         <h6 class="m-0 font-weight-bold text-primary">Tất cả Coupon</h6>
                     </div>
                     <div class="card-body">
+                        <div class="d-flex justify-content-end align-items-center">
+                            <h3 class="mr-5">Import CSV</h3>
+                            <form method="post" enctype="multipart/form-data"
+                                  action="${pageContext.request.contextPath}/admin/table/coupons?message=import">
+                                <input type="file" name="file">
+                                <button type="submit">Upload</button>
+                            </form>
+                        </div>
                         <div class="table-responsive">
                             <table
                                     class="table"
@@ -515,6 +522,8 @@
             hiddenInput.value = this.checked ? 1 : 0;
         });
     </script>
+    <script src="${pageContext.request.contextPath}/js/allCoupon.js"></script>
+
 </div>
 </body>
 </html>
