@@ -43,67 +43,7 @@
 
 <body id="page-top">
 <div id="wrapper">
-    <ul
-            class="navbar-nav sidebar accordion"
-            id="accordionSidebar"
-    >
-        <a
-                class="sidebar-brand d-flex align-items-center justify-content-center"
-                href="${pageContext.request.contextPath}/"
-        >
-            <div class="sidebar-brand-icon rotate-n-15">
-            </div>
-            <div class="sidebar-brand-text mx-3">THOMAS Admin</div>
-        </a>
-
-        <!-- Divider -->
-        <hr class="sidebar-divider my-0"/>
-
-        <!-- Nav Item - Dashboard -->
-        <li class="nav-item active">
-            <a class="nav-link" href="${pageContext.request.contextPath}/admin">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>Dashboard</span></a
-            >
-        </li>
-
-        <!-- Divider -->
-        <hr class="sidebar-divider"/>
-
-        <!-- Heading -->
-        <div class="sidebar-heading">Interface</div>
-
-        <!-- Nav Item - Utilities Collapse Menu -->
-        <li class="nav-item active">
-            <a
-                    class="nav-link collapsed"
-                    href="#"
-                    data-toggle="collapse"
-                    data-target="#collapseUtilities"
-                    aria-expanded="true"
-                    aria-controls="collapseUtilities"
-            >
-                <i class="fas fa-fw fa-table"></i>
-                <span>Bảng</span>
-            </a>
-            <div
-                    id="collapseUtilities"
-                    class="collapse"
-                    aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar"
-            >
-                <jsp:include page="/frontend/sidebar/sidebar.jsp"/>
-
-            </div>
-        </li>
-        <!-- Divider -->
-        <hr class="sidebar-divider d-none d-md-block"/>
-
-        <!-- Sidebar Toggler (Sidebar) -->
-        <div class="text-center d-none d-md-inline">
-            <button class="rounded-circle border-0" id="sidebarToggle"></button>
-        </div>
-    </ul>
+    <jsp:include page="/frontend/components/sidebar/sidebar.jsp"/>
 
     <div id="content-wrapper" class="d-flex flex-column">
         <div id="content">
@@ -157,9 +97,9 @@
     <c:when test='${param.message == "update"}'>update</c:when>
     <c:otherwise>create</c:otherwise>
 </c:choose>"/>
-                    <input type="hidden" name="productId" class="inputField"/>
+                    <input type="hidden" name="productId" class="custom_input--btn-group__input"/>
                     <div class="d-flex w-100">
-                        <div class="col-12 bg-white">
+                        <div class="col-12" style="background-color: #edf3f9">
                             <div class="d-flex flex-column mt-5">
                                 <div class="mt-5 ms-5">
                                     <h1 class="fw-bold">
@@ -188,7 +128,7 @@
                                         <input
                                                 name="coverImage"
                                                 type="file"
-                                                class="col p-0 form-control form-control-lg custom_design custom__border inputField"
+                                                class="col p-0 form-control form-control-lg custom_design custom__border custom_input--btn-group__input"
                                         />
 
                                     </div>
@@ -204,9 +144,8 @@
                                                 <input
                                                         type="text"
                                                         disabled
-                                                        class="col p-0 form-control form-control-lg custom_design custom__border inputField"
-                                                        value="${image1}"
-                                                >
+                                                        class="col p-0 form-control form-control-lg custom_design custom__border custom_input--btn-group__input"
+                                                        value="${image1}"/>
                                             </div>
                                         </c:when>
                                     </c:choose>
@@ -221,7 +160,7 @@
                                         <input
                                                 name="coverImage"
                                                 type="file"
-                                                class="col p-0 form-control form-control-lg custom_design custom__border inputField"
+                                                class="col p-0 form-control form-control-lg custom_design custom__border custom_input--btn-group__input"
                                         />
                                     </div>
                                     <c:choose>
@@ -236,9 +175,9 @@
                                                 <input
                                                         type="text"
                                                         disabled
-                                                        class="col p-0 form-control form-control-lg custom_design custom__border inputField"
+                                                        class="col p-0 form-control form-control-lg custom_design custom__border custom_input--btn-group__input"
                                                         value="${image2}"
-                                                >
+                                                />
                                             </div>
                                         </c:when>
                                     </c:choose>
@@ -251,9 +190,8 @@
                                         <input
                                                 name="coverImage"
                                                 type="file"
-                                                class="col p-0 form-control form-control-lg custom_design custom__border inputField"
+                                                class="col p-0 form-control form-control-lg custom_design custom__border custom_input--btn-group__input"
                                         />
-
                                     </div>
                                     <c:choose>
                                         <c:when test="${image3 != null}">
@@ -267,9 +205,9 @@
                                                 <input
                                                         type="text"
                                                         disabled
-                                                        class="col p-0 form-control form-control-lg custom_design custom__border inputField"
+                                                        class="col p-0 form-control form-control-lg custom_design custom__border custom_input--btn-group__input"
                                                         value="${image3}"
-                                                >
+                                                />
                                             </div>
                                         </c:when>
                                     </c:choose>
@@ -282,7 +220,7 @@
                                         <input
                                                 name="coverImage"
                                                 type="file"
-                                                class="col p-0 form-control form-control-lg custom_design custom__border inputField"
+                                                class="col p-0 form-control form-control-lg custom_design custom__border custom_input--btn-group__input"
                                         />
                                     </div>
                                     <c:choose>
@@ -297,9 +235,9 @@
                                                 <input
                                                         type="text"
                                                         disabled
-                                                        class="col p-0 form-control form-control-lg custom_design custom__border inputField"
+                                                        class="col p-0 form-control form-control-lg custom_design custom__border custom_input--btn-group__input"
                                                         value="${image4}"
-                                                >
+                                                />
                                             </div>
                                         </c:when>
                                     </c:choose>
@@ -312,7 +250,7 @@
                                         <input
                                                 name="coverImage"
                                                 type="file"
-                                                class="col p-0 form-control form-control-lg custom_design custom__border inputField"
+                                                class="col p-0 form-control form-control-lg custom_design custom__border custom_input--btn-group__input"
                                         />
                                     </div>
                                     <c:choose>
@@ -327,9 +265,9 @@
                                                 <input
                                                         type="text"
                                                         disabled
-                                                        class="col p-0 form-control form-control-lg custom_design custom__border inputField"
+                                                        class="col p-0 form-control form-control-lg custom_design custom__border custom_input--btn-group__input"
                                                         value="${image4}"
-                                                >
+                                                />
                                             </div>
                                         </c:when>
                                     </c:choose>
@@ -342,7 +280,7 @@
                                         <input
                                                 name="beltName"
                                                 type="text"
-                                                class="col form-control form-control-lg custom_design custom__border inputField"
+                                                class="col form-control form-control-lg custom_design custom__border custom_input--btn-group__input"
                                                 placeholder="Nhập tên sản phẩm"
                                                 value="${product.name}"
                                                 required
@@ -359,7 +297,7 @@
                                                 placeholder="các tag cách nhau bởi dấu cách"
                                                 name="tags"
                                                 type="text"
-                                                class="col form-control form-control-lg custom_design custom__border inputField"
+                                                class="col form-control form-control-lg custom_design custom__border custom_input--btn-group__input"
                                                 value="${tags}"
                                                 required
                                         />
@@ -372,7 +310,7 @@
                                         </p>
                                         <select
                                                 style="color: black"
-                                                class="col form-control form-control-lg custom_design custom__border inputField"
+                                                class="col form-control form-control-lg custom_design custom__border custom_input--btn-group__input"
                                                 name="material"
                                                 aria-label="Default select example"
                                         >
@@ -388,7 +326,7 @@
                                             Ngày ra mắt
                                         </p>
                                         <input name="releaseDate" type="date"
-                                               class="col form-control form-control-lg custom_design custom__border inputField"
+                                               class="col form-control form-control-lg custom_design custom__border custom_input--btn-group__input"
                                                value="${product.releaseDate}"
                                                required
                                         />
@@ -403,9 +341,9 @@
                                                 id="price-input"
                                                 name="price"
                                                 type="text"
-                                                class="col form-control form-control-lg custom_design custom__border inputField"
+                                                class="col form-control form-control-lg custom_design custom__border custom_input--btn-group__input"
                                                 placeholder="Nhập giá sản phẩm"
-                                                oninput="formatNumber(this)"
+<%--                                                oninput="formatNumber(this)"--%>
                                                 value="${product.price}"
                                                 required
                                         />
@@ -419,7 +357,7 @@
                                         <input
                                                 name="quantity"
                                                 type="number"
-                                                class="col form-control form-control-lg custom_design custom__border inputField"
+                                                class="col form-control form-control-lg custom_design custom__border custom_input--btn-group__input"
                                                 placeholder="Nhập số lượng khách hàng có thể chọn"
                                                 value="${product.stockQuantity}"
                                                 required
@@ -484,7 +422,7 @@
                                         <input
                                                 type="number"
                                                 name="discountPercent"
-                                                class="col form-control form-control-lg custom_design custom__border inputField"
+                                                class="col form-control form-control-lg custom_design custom__border custom_input--btn-group__input"
                                                 value="${product.discountPercent}"
                                         />
                                     </div>
@@ -511,6 +449,7 @@
                                         </button>
                                     </div>
                                 </div>
+                                <div class="d-flex flex-column mt-5 w-50"></div>
                             </div>
                         </div>
                     </div>
@@ -520,13 +459,8 @@
             </div>
         </div>
 
-        <footer class="sticky-footer bg-white">
-            <div class="container my-auto">
-                <div class="copyright text-center my-auto">
-                    <span>Copyright &copy; THOMAS 2021</span>
-                </div>
-            </div>
-        </footer>
+        <jsp:include page="/frontend/components/adminFooter/adminFooter.jsp"/>
+
     </div>
 </div>
 

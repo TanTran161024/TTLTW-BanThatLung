@@ -35,64 +35,7 @@
 
 <body id="page-top">
 <div id="wrapper">
-    <ul
-            class="navbar-nav sidebar accordion"
-            id="accordionSidebar"
-    >
-        <a
-                class="sidebar-brand d-flex align-items-center justify-content-center"
-                href="${pageContext.request.contextPath}/"
-        >
-            <div class="sidebar-brand-icon rotate-n-15">
-            </div>
-            <div class="sidebar-brand-text mx-3">THOMAS Admin</div>
-        </a>
-
-        <!-- Divider -->
-        <hr class="sidebar-divider my-0"/>
-
-        <!-- Nav Item - Dashboard -->
-        <li class="nav-item active">
-            <a class="nav-link nav_link--black" href="${pageContext.request.contextPath}/admin">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>Dashboard</span></a
-            >
-        </li>
-
-        <!-- Divider -->
-        <hr class="sidebar-divider"/>
-
-
-        <!-- Nav Item - Pages Collapse Menu -->
-
-        <!-- Nav Item - Utilities Collapse Menu -->
-        <li class="nav-item active">
-            <a
-                    class="nav-link collapsed nav_link--black"
-                    href="#"
-                    data-toggle="collapse"
-                    data-target="#collapseUtilities"
-                    aria-expanded="true"
-                    aria-controls="collapseUtilities"
-            >
-                <i class="fas fa-fw fa-table"></i>
-                <span>Bảng</span>
-            </a>
-            <div
-                    id="collapseUtilities"
-                    class="collapse"
-                    aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar"
-            >
-                <jsp:include page="/frontend/sidebar/sidebar.jsp"/>
-            </div>
-        </li>
-
-        <!-- Sidebar Toggler (Sidebar) -->
-        <div class="text-center d-none d-md-inline">
-            <button class="rounded-circle border-0" id="sidebarToggle"></button>
-        </div>
-    </ul>
+    <jsp:include page="/frontend/components/sidebar/sidebar.jsp"/>
 
     <div id="content-wrapper" class="d-flex flex-column">
         <div id="content">
@@ -100,7 +43,7 @@
                     class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow"
             >
                 <button
-                        class="btn btn-white border border-dark custom_btn_style"
+                        class="btn btn-white border border-dark custom_input--btn-group__input"
                         style="color: black"
                         data-bs-toggle="modal"
                         data-bs-target="#createModal"
@@ -322,7 +265,7 @@
                     <div class="card-body">
                         <div class="table-responsive">
                             <table
-                                    class="table table-bordered"
+                                    class="table"
                                     id="dataTable"
                                     width="100%"
                                     cellspacing="0"
@@ -383,13 +326,8 @@
                 </div>
             </div>
 
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; THOMAS 2021</span>
-                    </div>
-                </div>
-            </footer>
+            <jsp:include page="/frontend/components/adminFooter/adminFooter.jsp"/>
+
         </div>
     </div>
 
@@ -479,7 +417,7 @@
                             >Tên người dùng</label
                             >
                             <input
-                                    class="form-control inputField"
+                                    class="form-control custom_input--btn-group__input"
                                     name="userName"
                                     type="text"
                                     placeholder="Nhập tên người dùng"
@@ -491,7 +429,7 @@
                             >Email</label
                             >
                             <input
-                                    class="form-control inputField"
+                                    class="form-control custom_input--btn-group__input"
                                     name="Email"
                                     type="text"
                                     placeholder="Nhập email"
@@ -504,7 +442,7 @@
                             >
                             <input
                                     id="password"
-                                    class="form-control inputField"
+                                    class="form-control custom_input--btn-group__input"
                                     name="password"
                                     type="password"
                                     placeholder="Nhập mật khẩu cho người dùng"
@@ -520,7 +458,7 @@
                             >
                             <input
                                     id="reTypePassword"
-                                    class="form-control inputField"
+                                    class="form-control custom_input--btn-group__input"
                                     name="reTypePassword"
                                     type="password"
                                     placeholder="Nhập lại mật khẩu cho người dùng"
@@ -561,7 +499,7 @@
                         <div class="d-flex flex-column mt-3">
                             <select
                                     style="color: black"
-                                    class="form-control inputField"
+                                    class="form-control custom_input--btn-group__input"
                                     name="role"
                                     aria-label="Default select example"
                                     required
@@ -575,13 +513,15 @@
                             <label class="form-label " for="birthDate" style="color: black"
                             >Ngày sinh</label
                             >
-                            <input class="form-control inputField" name="birthDate" type="date" required/>
+                            <input class="form-control custom_input--btn-group__input" name="birthDate" type="date"
+                                   required/>
                         </div>
                         <div class="d-flex flex-column mt-3">
                             <label class="form-label " for="phoneNumber" style="color: black"
                             >Số điện thoại</label
                             >
-                            <input class="form-control inputField" name="phoneNumber" type="number" required/>
+                            <input class="form-control custom_input--btn-group__input" name="phoneNumber" type="number"
+                                   required/>
                         </div>
                         <div class="d-flex flex mt-3">
                             <label class="form-label m-0 mr-2" style="color: black" for="isDeleted">
