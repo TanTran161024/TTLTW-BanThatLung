@@ -4,6 +4,7 @@ import com.thomas.dao.ReviewDao;
 import com.thomas.dao.model.Reviews;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class UploadReviewService {
@@ -53,7 +54,7 @@ public class UploadReviewService {
         review.setUserId(userId);
         review.setContent(content);
         review.setReviewerStar(rating);
-        review.setCreatedAt(LocalDate.now());
+        review.setCreatedAt(LocalDateTime.now());
         return reviewDao.createReview(review);
     }
 

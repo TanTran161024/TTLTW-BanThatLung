@@ -1,7 +1,10 @@
 package com.thomas.controller;
 
+import com.thomas.dao.model.Token;
+import com.thomas.dao.model.User;
 import com.thomas.services.SignUpService;
 import com.thomas.services.TokenService;
+import com.thomas.services.UploadUserService;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -11,6 +14,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Properties;
 import java.util.UUID;
@@ -19,6 +23,7 @@ import java.util.UUID;
 public class signUpController extends HttpServlet {
     TokenService service = new TokenService();
     SignUpService signUpService = new SignUpService();
+    UploadUserService uploadUserService = new UploadUserService();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -58,7 +63,7 @@ public class signUpController extends HttpServlet {
         MimeMessage message = new MimeMessage(session);
         try {
             token = UUID.randomUUID().toString();
-            String resetLink = "http://localhost:8080/confirmSuccess?token=" + token;
+            String resetLink = "http://localhost:8080/verify?token=" + token;
             String messageContent = "Vui lòng nhấn vào đường dẫn này để kích hoạt tài khoản.\n" +
                     resetLink + "\n" +
                     "Nếu bạn không yêu cầu điều này, vui lòng bỏ qua email này.";
@@ -87,7 +92,9 @@ public class signUpController extends HttpServlet {
         DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE;
         LocalDate birthDate = LocalDate.parse(birthDateString, formatter);
         boolean isSuccess = signUpService.signUp(email, password, name, middleName, birthDate);
-        boolean isSaveToken = service.saveResetToken(toEmail, token);
+        User u = uploadUserService.findUserByEmail(email);
+        Token userToken = new Token(token, u.getId(), LocalDateTime.now().plusHours(24));
+        boolean isSaveToken = service.saveResetToken(userToken);
 
         if (!isSuccess && isSaveToken) {
             request.setAttribute("errorMessage", "Tài khoản đã tồn tại");
@@ -95,7 +102,7 @@ public class signUpController extends HttpServlet {
 
         }
 
-        response.sendRedirect("/confirmSuccess");
+        response.sendRedirect("/verify");
     }
 }
 

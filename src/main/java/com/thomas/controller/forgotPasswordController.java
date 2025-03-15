@@ -1,7 +1,10 @@
 package com.thomas.controller;
 
 import com.thomas.dao.UserDao;
+import com.thomas.dao.model.Token;
+import com.thomas.dao.model.User;
 import com.thomas.services.TokenService;
+import com.thomas.services.UploadUserService;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -10,11 +13,15 @@ import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Properties;
 import java.util.UUID;
 
 @WebServlet(name = "forgotPasswordController", value = "/forgotPassword")
 public class forgotPasswordController extends HttpServlet {
+    UploadUserService uploadUserService = new UploadUserService();
+    TokenService tokenService = new TokenService();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -71,8 +78,9 @@ public class forgotPasswordController extends HttpServlet {
             message.setText(messageContent, "UTF-8");
             // Gủi email
             Transport.send(message);
-            TokenService service = new TokenService();
-            service.saveResetToken(toEmail, token);
+            User u = uploadUserService.findUserByEmail(toEmail);
+            Token userToken = new Token(token, u.getId(), LocalDateTime.now().plusHours(24));
+            tokenService.saveResetToken(userToken);
         } catch (MessagingException e) {
             e.printStackTrace();
         }

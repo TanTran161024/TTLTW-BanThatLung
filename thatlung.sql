@@ -192,3 +192,17 @@ CREATE TABLE sessions
     createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (userId) REFERENCES users (id) ON DELETE CASCADE
 );
+CREATE TABLE users (
+                       id INT AUTO_INCREMENT PRIMARY KEY,
+                       email VARCHAR(255) UNIQUE NOT NULL,
+                       password VARCHAR(255) NOT NULL,
+                       is_verified BOOLEAN DEFAULT FALSE,
+                       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE tokens (
+                        tokenId VARCHAR(255) PRIMARY KEY,
+                        userId INT NOT NULL,
+                        expiresAt DATETIME NOT NULL,
+                        FOREIGN KEY (userId) REFERENCES users(id) ON DELETE CASCADE
+);

@@ -20,8 +20,8 @@ public class resetPasswordController extends HttpServlet {
             response.getWriter().println("Thiếu token hoặc không hợp lệ.");
             return;
         }
-        boolean isValid = tokenService.verifyToken(token);
-        if (isValid) {
+        int userId = tokenService.verifyToken(token);
+        if (userId != 0) {
             response.sendRedirect("/frontend/signInPage/resetPasswordPage/resetPasswordPage.jsp?token=" + token);
         }
     }
