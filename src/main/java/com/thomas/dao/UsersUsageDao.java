@@ -31,14 +31,6 @@ public class UsersUsageDao {
         return new ArrayList<>(uniqueUsers.values());
     }
 
-
-    public void updateUserActivity(String email) {
-        JDBIConnect.get().withHandle(h -> {
-            String sql = "UPDATE usersUsage SET activity = NOW() WHERE email =:email";
-            return h.createUpdate(sql).bind("email", email).execute() > 0;
-        });
-    }
-
     public boolean insertUsersUsage(String userEmail, String ipAddress) {
         return JDBIConnect.get().withHandle(h -> {
             String sql = "INSERT INTO usersUsage (userEmail, lastLogin, lastActivity, ipAddress) " +

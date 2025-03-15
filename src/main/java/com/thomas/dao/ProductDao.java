@@ -394,7 +394,6 @@ public class ProductDao {
     }
 
 
-
     public Map<Integer, Belts> getAllProductForDisplay() {
         Map<Integer, Belts> beltsList = new HashMap<>();
         return JDBIConnect.get().withHandle(handle -> {
@@ -618,4 +617,17 @@ public class ProductDao {
             return h.createUpdate(sql).bind("id", id).execute();
         });
     }
+
+    public List<Belts> getBeltsByQueryKey(String query) {
+        query = "%" + query + "%";
+
+        String finalQuery = query;
+        return JDBIConnect.get().withHandle(handle ->
+                handle.createQuery("SELECT * FROM belts WHERE name LIKE :query")
+                        .bind("query", finalQuery)
+                        .mapToBean(Belts.class)
+                        .list()
+        );
+    }
+
 }

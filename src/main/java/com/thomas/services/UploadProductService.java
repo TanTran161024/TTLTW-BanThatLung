@@ -325,14 +325,11 @@ public class UploadProductService {
     }
 
     public List<Belts> searchProduct(String keyword) {
-        List<Belts> list = new ArrayList<>();
-
-        for (Belts belt : getAllProductsForDisplay()) {
-            if (belt.getName().equalsIgnoreCase(keyword) || belt.getMaterialBelt().equalsIgnoreCase(keyword)) {
-                list.add(belt);
-            }
+        List<Belts> beltProduct = productDao.getBeltsByQueryKey(keyword);
+        for (Belts belt : beltProduct) {
+            belt.setImage(getProductImages(belt.getId()));
         }
-        return list;
+        return beltProduct;
     }
 
     public List<Belts> getCollection() {

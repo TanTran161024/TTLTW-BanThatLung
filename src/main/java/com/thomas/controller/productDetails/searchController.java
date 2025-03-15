@@ -1,5 +1,7 @@
 package com.thomas.controller.productDetails;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.thomas.dao.model.Belts;
 import com.thomas.services.UploadProductService;
 import jakarta.servlet.*;
@@ -7,28 +9,31 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @WebServlet(name = "searchController", value = "/search")
 public class searchController extends HttpServlet {
+    UploadProductService uploadProductService = new UploadProductService();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        UploadProductService uploadProductService = new UploadProductService();
-        String mainImage = "assets/images/Gray Minimalist New Collection Banner (1) 1.jpg";
-        String keyword = request.getParameter("keyword");
-        request.setAttribute("keyword", keyword);
-        List<Belts> beltsList = uploadProductService.searchProduct(keyword);
-        int totalProduct = beltsList.size();
-        String message = "";
-        request.setAttribute("beltsList", beltsList);
-        request.setAttribute("totalProduct", totalProduct);
-        request.setAttribute("mainImage", mainImage);
-        if (beltsList.size() == 0 || beltsList == null) {
-            request.getRequestDispatcher("frontend/allProduct/notFound.jsp").forward(request, response);
-        } else {
-            request.getRequestDispatcher("frontend/allProduct/allProduct1.jsp").forward(request, response);
-        }
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+
+        String query = request.getParameter("q");
+
+        List<Belts> queryBelts = uploadProductService.searchProduct(query);
+
+        Gson gson = new GsonBuilder()
+                .registerTypeAdapter(LocalDate.class, (com.google.gson.JsonSerializer<LocalDate>)
+                        (localDate, type, jsonSerializationContext) ->
+                                new com.google.gson.JsonPrimitive(localDate.format(DateTimeFormatter.ISO_LOCAL_DATE)))
+                .create();
+        String json = gson.toJson(queryBelts);
+
+        response.getWriter().write(json);
     }
 
     @Override

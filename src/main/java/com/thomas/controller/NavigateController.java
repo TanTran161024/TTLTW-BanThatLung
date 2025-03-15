@@ -28,225 +28,49 @@ public class NavigateController extends HttpServlet {
         List<Belts> sortedList = null;
         if (type.equals("all")) {
             String title = "Sản Phẩm";
-            String mainImage = "/assets/images/allProduct.png";
             String bigTitle = "Tất cả Sản Phẩm";
-            request.setAttribute("title", title);
-            request.setAttribute("bigTitle", bigTitle);
-//            request.setAttribute("type", type);
-            session.setAttribute("type", type);
-            request.setAttribute("mainImage", mainImage);
-            List<Belts> listBelt = uploadProductService.getAllProductsForDisplay();
-            if (minPrice != null && maxPrice != null) {
-                listBelt = uploadProductService.filterProduct(listBelt, Double.parseDouble(minPrice), Double.parseDouble(maxPrice));
-            }
-            if (sort != null) {
-                sortedList = uploadProductService.getSortedListBelts(sort, listBelt);
-                for (int i = 0; i < sortedList.size(); i++) {
-                    for (int j = 0; j < listBelt.size(); j++) {
-                        if (sortedList.get(i).getName().equals(listBelt.get(j).getName())) {
-                            sortedList.get(i).setMainImage(listBelt.get(j).getMainImage());
-                        }
-                    }
-                }
-            }
-            if (sortedList != null) {
-                request.setAttribute("listBelt", sortedList);
-
-            } else {
-                request.setAttribute("listBelt", listBelt);
-            }
-            pagingforPage(request, listBelt);
-            request.getRequestDispatcher("/frontend/allProduct/allProduct1.jsp").forward(request, response);
+            String mainImage = "/assets/images/allProduct.png";
+            handleRoute(type, title, bigTitle, mainImage, minPrice, maxPrice, request, response, session, sort, sortedList);
         }
         if (type.equals("men")) {
             String title = "Nam";
             String bigTitle = "Thắt Lưng Nam";
-            String mainImage = "assets/images/banner/z6088271164003_2200fec21842ecda09fe85ab32825a86.jpg";
-            request.setAttribute("mainImage", mainImage);
-            request.setAttribute("title", title);
-            request.setAttribute("bigTitle", bigTitle);
-            request.setAttribute("type", type);
-            request.setAttribute("mainImage", mainImage);
-            List<Belts> listBelt = uploadProductService.getMaleOrFemaleAndMaterialProducts("M", "all");
-            if (minPrice != null && maxPrice != null) {
-                listBelt = uploadProductService.filterProduct(listBelt, Double.parseDouble(minPrice), Double.parseDouble(maxPrice));
-            }
-            if (sort != null) {
-                sortedList = uploadProductService.getSortedListBelts(sort, listBelt);
-                for (int i = 0; i < sortedList.size(); i++) {
-                    for (int j = 0; j < listBelt.size(); j++) {
-                        if (sortedList.get(i).getName().equals(listBelt.get(j).getName())) {
-                            sortedList.get(i).setMainImage(listBelt.get(j).getMainImage());
-                        }
-                    }
-                }
-            }
-            if (sortedList != null) {
-                request.setAttribute("listBelt", sortedList);
+            String mainImage = "/assets/images/banner/z6088271164003_2200fec21842ecda09fe85ab32825a86.jpg";
+            handleRoute(type, title, bigTitle, mainImage, minPrice, maxPrice, request, response, session, sort, sortedList);
 
-            } else {
-                request.setAttribute("listBelt", listBelt);
-            }
-            pagingforPage(request, listBelt);
-            request.getRequestDispatcher("/frontend/allProduct/allProduct1.jsp").forward(request, response);
         }
         if (type.equals("women")) {
             String title = "Nữ";
             String bigTitle = "Thắt Lưng Nữ";
-            String mainImage = "assets/images/banner/z6088271164002_95c694291ffaeb61697b3ab7fdaf8065.png";
-            request.setAttribute("title", title);
-            request.setAttribute("bigTitle", bigTitle);
-            request.setAttribute("type", type);
-            request.setAttribute("mainImage", mainImage);
-            List<Belts> listBelt = uploadProductService.getMaleOrFemaleAndMaterialProducts("N", "all");
-            if (minPrice != null && maxPrice != null) {
-                listBelt = uploadProductService.filterProduct(listBelt, Double.parseDouble(minPrice), Double.parseDouble(maxPrice));
-            }
-            if (sort != null) {
-                sortedList = uploadProductService.getSortedListBelts(sort, listBelt);
-                for (int i = 0; i < sortedList.size(); i++) {
-                    for (int j = 0; j < listBelt.size(); j++) {
-                        if (sortedList.get(i).getName().equals(listBelt.get(j).getName())) {
-                            sortedList.get(i).setMainImage(listBelt.get(j).getMainImage());
-                        }
-                    }
-                }
-            }
-            if (sortedList != null) {
-                request.setAttribute("listBelt", sortedList);
-
-            } else {
-                request.setAttribute("listBelt", listBelt);
-            }
-            pagingforPage(request, listBelt);
-            request.getRequestDispatcher("/frontend/allProduct/allProduct1.jsp").forward(request, response);
+            String mainImage = "/assets/images/banner/z6088271164002_95c694291ffaeb61697b3ab7fdaf8065.png";
+            handleRoute(type, title, bigTitle, mainImage, minPrice, maxPrice, request, response, session, sort, sortedList);
         }
         if (type.equals("menLeather")) {
             String title = "Nam";
             String bigTitle = "Thắt Lưng Da Nam";
             String mainImage = "assets/images/banner/z6088271164003_2200fec21842ecda09fe85ab32825a86.jpg";
-            request.setAttribute("mainImage", mainImage);
-            request.setAttribute("title", title);
-            request.setAttribute("bigTitle", bigTitle);
-            request.setAttribute("type", type);
-            List<Belts> listBelt = uploadProductService.getMaleOrFemaleAndMaterialProducts("M", "da");
-            if (minPrice != null && maxPrice != null) {
-                listBelt = uploadProductService.filterProduct(listBelt, Double.parseDouble(minPrice), Double.parseDouble(maxPrice));
-            }
-            if (sort != null) {
-                sortedList = uploadProductService.getSortedListBelts(sort, listBelt);
-                for (int i = 0; i < sortedList.size(); i++) {
-                    for (int j = 0; j < listBelt.size(); j++) {
-                        if (sortedList.get(i).getName().equals(listBelt.get(j).getName())) {
-                            sortedList.get(i).setMainImage(listBelt.get(j).getMainImage());
-                        }
-                    }
-                }
-            }
-            if (sortedList != null) {
-                request.setAttribute("listBelt", sortedList);
-
-            } else {
-                request.setAttribute("listBelt", listBelt);
-            }
-            request.setAttribute("listBelt", listBelt);
-            pagingforPage(request, listBelt);
-            request.getRequestDispatcher("/frontend/allProduct/allProduct1.jsp").forward(request, response);
+            handleRoute(type, title, bigTitle, mainImage, minPrice, maxPrice, request, response, session, sort, sortedList);
         }
         if (type.equals("menCanvas")) {
             String title = "Nam Canvas";
             String bigTitle = "Thắt lưng Canvas Nam";
             String mainImage = "assets/images/banner/z6088271164003_2200fec21842ecda09fe85ab32825a86.jpg";
-            request.setAttribute("mainImage", mainImage);
-            request.setAttribute("title", title);
-            request.setAttribute("bigTitle", bigTitle);
-            request.setAttribute("type", type);
-            List<Belts> listBelt = uploadProductService.getMaleOrFemaleAndMaterialProducts("M", "canvas");
-            if (minPrice != null && maxPrice != null) {
-                listBelt = uploadProductService.filterProduct(listBelt, Double.parseDouble(minPrice), Double.parseDouble(maxPrice));
-            }
-            if (sort != null) {
-                sortedList = uploadProductService.getSortedListBelts(sort, listBelt);
-                for (int i = 0; i < sortedList.size(); i++) {
-                    for (int j = 0; j < listBelt.size(); j++) {
-                        if (sortedList.get(i).getName().equals(listBelt.get(j).getName())) {
-                            sortedList.get(i).setMainImage(listBelt.get(j).getMainImage());
-                        }
-                    }
-                }
-            }
-            if (sortedList != null) {
-                request.setAttribute("listBelt", sortedList);
+            handleRoute(type, title, bigTitle, mainImage, minPrice, maxPrice, request, response, session, sort, sortedList);
 
-            } else {
-                request.setAttribute("listBelt", listBelt);
-            }
-            request.setAttribute("listBelt", listBelt);
-            pagingforPage(request, listBelt);
-            request.getRequestDispatcher("/frontend/allProduct/allProduct1.jsp").forward(request, response);
         }
         if (type.equals("womenLeather")) {
             String title = "Nữ Leather";
             String bigTitle = "Thắt lưng Da Nữ";
             String mainImage = "assets/images/banner/z6088271164002_95c694291ffaeb61697b3ab7fdaf8065.png";
-            request.setAttribute("mainImage", mainImage);
-            request.setAttribute("title", title);
-            request.setAttribute("bigTitle", bigTitle);
-            request.setAttribute("type", type);
-            List<Belts> listBelt = uploadProductService.getMaleOrFemaleAndMaterialProducts("N", "da");
-            if (minPrice != null && maxPrice != null) {
-                listBelt = uploadProductService.filterProduct(listBelt, Double.parseDouble(minPrice), Double.parseDouble(maxPrice));
-            }
-            if (sort != null) {
-                sortedList = uploadProductService.getSortedListBelts(sort, listBelt);
-                for (int i = 0; i < sortedList.size(); i++) {
-                    for (int j = 0; j < listBelt.size(); j++) {
-                        if (sortedList.get(i).getName().equals(listBelt.get(j).getName())) {
-                            sortedList.get(i).setMainImage(listBelt.get(j).getMainImage());
-                        }
-                    }
-                }
-            }
-            if (sortedList != null) {
-                request.setAttribute("listBelt", sortedList);
+            handleRoute(type, title, bigTitle, mainImage, minPrice, maxPrice, request, response, session, sort, sortedList);
 
-            } else {
-                request.setAttribute("listBelt", listBelt);
-            }
-            request.setAttribute("listBelt", listBelt);
-            pagingforPage(request, listBelt);
-            request.getRequestDispatcher("/frontend/allProduct/allProduct1.jsp").forward(request, response);
         }
         if (type.equals("womenCanvas")) {
             String title = "Nữ Canvas";
             String bigTitle = "Thắt lưng Canvas Nữ";
             String mainImage = "assets/images/banner/z6088271164002_95c694291ffaeb61697b3ab7fdaf8065.png";
-            request.setAttribute("mainImage", mainImage);
-            request.setAttribute("title", title);
-            request.setAttribute("bigTitle", bigTitle);
-            request.setAttribute("type", type);
-            List<Belts> listBelt = uploadProductService.getMaleOrFemaleAndMaterialProducts("N", "canvas");
-            if (minPrice != null && maxPrice != null) {
-                listBelt = uploadProductService.filterProduct(listBelt, Double.parseDouble(minPrice), Double.parseDouble(maxPrice));
-            }
-            if (sort != null) {
-                sortedList = uploadProductService.getSortedListBelts(sort, listBelt);
-                for (int i = 0; i < sortedList.size(); i++) {
-                    for (int j = 0; j < listBelt.size(); j++) {
-                        if (sortedList.get(i).getName().equals(listBelt.get(j).getName())) {
-                            sortedList.get(i).setMainImage(listBelt.get(j).getMainImage());
-                        }
-                    }
-                }
-            }
-            if (sortedList != null) {
-                request.setAttribute("listBelt", sortedList);
+            handleRoute(type, title, bigTitle, mainImage, minPrice, maxPrice, request, response, session, sort, sortedList);
 
-            } else {
-                request.setAttribute("listBelt", listBelt);
-            }
-            pagingforPage(request, listBelt);
-            request.getRequestDispatcher("/frontend/allProduct/allProduct1.jsp").forward(request, response);
         }
         if (type.equals("collection")) {
             beltsList = uploadProductService.getCollection();
@@ -268,31 +92,39 @@ public class NavigateController extends HttpServlet {
             String title = "Nữ Canvas";
             String bigTitle = "Sản Phẩm Giảm Giá";
             String mainImage = "assets/images/homepage/z6088271163993_ca5603db38e0ae9d411375a3aeb3ef65.jpg";
-            List<Belts> listBelt = uploadProductService.getDiscountProductsForDisplay();
-            if (minPrice != null && maxPrice != null) {
-                listBelt = uploadProductService.filterProduct(listBelt, Double.parseDouble(minPrice), Double.parseDouble(maxPrice));
-            }
-            if (sort != null) {
-                sortedList = uploadProductService.getSortedListBelts(sort, listBelt);
-                for (int i = 0; i < sortedList.size(); i++) {
-                    for (int j = 0; j < listBelt.size(); j++) {
-                        if (sortedList.get(i).getName().equals(listBelt.get(j).getName())) {
-                            sortedList.get(i).setMainImage(listBelt.get(j).getMainImage());
-                        }
-                    }
-                }
-            }
-            if (sortedList != null) {
-                request.setAttribute("listBelt", sortedList);
-
-            } else {
-                request.setAttribute("listBelt", listBelt);
-            }
-            pagingforPage(request, listBelt);
-            request.getRequestDispatcher("/frontend/allProduct/allProduct1.jsp").forward(request, response);
+            handleRoute(type, title, bigTitle, mainImage, minPrice, maxPrice, request, response, session, sort, sortedList);
         }
 
 
+    }
+
+    public void handleRoute(String type, String title, String bigTitle, String mainImage, String minPrice, String maxPrice, HttpServletRequest request, HttpServletResponse response, HttpSession session, String sort, List<Belts> sortedList) throws ServletException, IOException {
+        request.setAttribute("title", title);
+        request.setAttribute("bigTitle", bigTitle);
+        session.setAttribute("type", type);
+        request.setAttribute("mainImage", mainImage);
+        List<Belts> listBelt = uploadProductService.getAllProductsForDisplay();
+        if (minPrice != null && maxPrice != null) {
+            listBelt = uploadProductService.filterProduct(listBelt, Double.parseDouble(minPrice), Double.parseDouble(maxPrice));
+        }
+        if (sort != null) {
+            sortedList = uploadProductService.getSortedListBelts(sort, listBelt);
+            for (int i = 0; i < sortedList.size(); i++) {
+                for (int j = 0; j < listBelt.size(); j++) {
+                    if (sortedList.get(i).getName().equals(listBelt.get(j).getName())) {
+                        sortedList.get(i).setMainImage(listBelt.get(j).getMainImage());
+                    }
+                }
+            }
+        }
+        if (sortedList != null) {
+            request.setAttribute("listBelt", sortedList);
+
+        } else {
+            request.setAttribute("listBelt", listBelt);
+        }
+        pagingforPage(request, listBelt);
+        request.getRequestDispatcher("/frontend/allProduct/allProduct1.jsp").forward(request, response);
     }
 
     @Override
