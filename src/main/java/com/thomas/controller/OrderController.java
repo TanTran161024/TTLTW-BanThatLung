@@ -49,7 +49,7 @@ public class OrderController extends HttpServlet {
             for (CartItem cartItem : cart.values()) {
                 uploadOrderDetailService.createOrderDetail(order.getId(), cartItem.getPrice(), cartItem.getBelt().getId(), cartItem.getQuantity());
             }
-            response.sendRedirect("/confirmSuccess?messageRedirect=orderDetailSuccess");
+            response.sendRedirect("/verify?messageRedirect=orderDetailSuccess");
         }
     }
 }

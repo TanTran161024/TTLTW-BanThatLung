@@ -34,5 +34,6 @@ public class JDBIConnect {
         jdbi.registerRowMapper(Token.class, new TokenMapper());
         jdbi.registerRowMapper(User.class, new UserMapper());
         jdbi.registerRowMapper(Reviews.class, new ReviewMapper());
+        jdbi.registerRowMapper(UsersUsageMapper.class, new UsersUsageMapper());
     }
 }

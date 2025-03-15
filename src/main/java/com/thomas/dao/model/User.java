@@ -17,12 +17,13 @@ public class User implements Serializable {
     private LocalDateTime createAt;
     private int isDeleted;
     private int isActive;
+    private LocalDateTime lastActivateAt;
 
     public User() {
 
     }
 
-    public User(String password, String name, String email, long phoneNumber, LocalDate dateOfBirth, String gender, String image, int role, LocalDateTime createAt, int isDeleted, int isActive) {
+    public User(String password, String name, String email, long phoneNumber, LocalDate dateOfBirth, String gender, String image, int role, LocalDateTime createAt, int isDeleted, int isActive, LocalDateTime lastActivateAt) {
         this.password = password;
         this.name = name;
         this.email = email;
@@ -32,6 +33,7 @@ public class User implements Serializable {
         this.image = image;
         this.role = role;
         this.createAt = createAt;
+        this.lastActivateAt = lastActivateAt;
     }
 
     public int getId() {
@@ -151,5 +153,12 @@ public class User implements Serializable {
                 '}';
     }
 
+    public LocalDateTime getLastActivateAt() {
+        return lastActivateAt;
+    }
+
+    public void setLastActivateAt(LocalDateTime lastActivateAt) {
+        this.lastActivateAt = lastActivateAt;
+    }
 
 }
