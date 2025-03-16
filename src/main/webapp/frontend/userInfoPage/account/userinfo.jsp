@@ -54,45 +54,43 @@
                 class="d-flex col-12"
                 style="white-space: nowrap;"
         >
-            <div
-                    class="d-inline-block fw-bold custom_active mb-4"
-                    style="padding: 12px"
-            >
+            <div class="d-inline-block fw-bold custom_active mb-4" style="padding: 12px">
                 <a
-                        class="text-white text-decoration-none custom_size--19"
+                        class="text-white custom_size--19"
                         href="${pageContext.request.contextPath}/userInfo"
                 >Tài khoản</a
                 >
             </div>
             <div class="d-inline-block fw-bold" style="padding: 12px">
                 <a
-                        class="text-dark text-decoration-none custom_size--19"
+                        class="custom_size--19"
                         href="${pageContext.request.contextPath}/userProfile"
                 >Hồ sơ</a
                 >
             </div>
             <div class="d-inline-block fw-bold" style="padding: 12px">
                 <a
-                        class="text-dark text-decoration-none custom_size--19"
+                        class="custom_size--19"
                         href="${pageContext.request.contextPath}/userAddress?userId=${sessionScope.auth.id}"
                 >Địa chỉ</a
                 >
             </div>
             <div class="d-inline-block fw-bold" style="padding: 12px">
                 <a
-                        class="text-dark text-decoration-none custom_size--19"
+                        class="custom_size--19"
                         href="${pageContext.request.contextPath}/userPrivacy"
                 >Riêng tư</a
                 >
             </div>
             <div class="d-inline-block fw-bold" style="padding: 12px">
                 <a
-                        class="text-dark text-decoration-none custom_size--19"
+                        class="custom_size--19"
                         href="${pageContext.request.contextPath}/viewOrders"
                 >Đơn hàng</a
                 >
             </div>
         </div>
+
     </div>
     <div class="container container-sm border rounded">
         <div class="d-flex flex-column mt-4 mb-2 ms-2">
@@ -121,7 +119,7 @@
                 <input
                         id="currentEmail"
                         type="email"
-                        class="form-control form-control-md custom__border custom-lg-input custom_size--16 custom_design"
+                        class="form-control form-control-md border custom-lg-input custom_size--16 custom_design"
                         placeholder="Nhập email mới"
                 />
             </div>
@@ -130,7 +128,7 @@
                 <input
                         name="password"
                         type="password"
-                        class="form-control form-control-md custom__border custom custom-lg-input custom_size--16 custom_design currentPassword"
+                        class="form-control form-control-md border custom custom-lg-input custom_size--16 custom_design currentPassword"
                         placeholder="Nhập mật khẩu"
                 />
             </div>
@@ -138,7 +136,7 @@
                 <p class="mb-1 mt-2 custom_size--16">Nhập lại mật khẩu</p>
                 <input
                         type="password"
-                        class="form-control form-control-md custom__border custom-lg-input custom_size--16 custom_design currentPasswordRetype"
+                        class="form-control form-control-md border custom-lg-input custom_size--16 custom_design currentPasswordRetype"
                 />
                 <c:if test="${not empty missmatchPassword}">
                     <p class="text-danger mt-2 ms-2 custom_size--16 mb-0">${missmatchPassword}</p>
@@ -169,7 +167,7 @@
                 <p class="mb-1 mt-2 ms-2 custom_size--16">Mật khẩu hiện tại</p>
                 <input
                         type="password"
-                        class="form-control form-control-md custom__border custom-lg-input ms-2 custom_design custom_size--16 currentPass"
+                        class="form-control form-control-md border custom-lg-input ms-2 custom_design custom_size--16 currentPass"
                         placeholder="Mật khẩu hiện tại"
                         required
                 />
@@ -182,7 +180,7 @@
                 <input
                         id="newPassword"
                         type="password"
-                        class="form-control form-control-md custom__border custom-lg-input ms-2 custom_design custom_size--16 newPassword"
+                        class="form-control form-control-md border custom-lg-input ms-2 custom_design custom_size--16 newPassword"
                         placeholder="Nhập mật khẩu mới"
                         required
                 />
@@ -191,7 +189,7 @@
                 <p class="mb-1 mt-2 ms-2 custom_size--16">Nhập lại mật khẩu</p>
                 <input
                         type="password"
-                        class="form-control form-control-md custom__border custom-lg-input ms-2 custom_design custom_size--16 newPasswordRetype"
+                        class="form-control form-control-md border custom-lg-input ms-2 custom_design custom_size--16 newPasswordRetype"
                         placeholder="Nhập lại mật khẩu"
                         required
                 />

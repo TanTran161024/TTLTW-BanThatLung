@@ -438,5 +438,8 @@
 }
 
 .user-addresses {
+  padding: 10px;
   justify-content: center;
+  transition: background-color 0.5s ease;
 }
+
